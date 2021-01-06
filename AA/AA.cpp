@@ -13,7 +13,7 @@ void RecursionNumber(int n) {
 
 
 int main() {
-	freopen("input.txt", "rt", stdin);
+//	freopen("input.txt", "rt", stdin);
 	int number;
 	scanf("%d", &number);
 	RecursionNumber(number);
