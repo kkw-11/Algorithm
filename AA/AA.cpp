@@ -1,23 +1,57 @@
-//56. 재귀함수 분석
+////56. 재귀함수 분석
+//
+//#include <stdio.h>
+//
+//void RecursionNumber(int n) {
+//	if (n == 0)
+//		return;
+//
+//	RecursionNumber(n - 1);
+//
+//	printf("%d ", n);
+//}
+//
+//
+//int main() {
+////	freopen("input.txt", "rt", stdin);
+//	int number;
+//	scanf("%d", &number);
+//	RecursionNumber(number);
+//}
 
+//8.올바른 괄호
 #include <stdio.h>
-
-void RecursionNumber(int n) {
-	if (n == 0)
-		return;
-
-	RecursionNumber(n - 1);
-
-	printf("%d ", n);
-}
-
-
 int main() {
-//	freopen("input.txt", "rt", stdin);
-	int number;
-	scanf("%d", &number);
-	RecursionNumber(number);
+	char ch[100];
+	int laststring = 0;
+	int cnt = 0;
+	scanf("%s", ch);
+
+	for (int i = 0; ch[i]; ++i) {
+		laststring = i;
+	}
+
+	for (int j = laststring; j >= 0; --j) {
+		if (ch[j] == '(')
+			--cnt;
+		else if (ch[j] == ')')
+			++cnt;
+		else
+			cnt = -1;
+
+		if (cnt < 0)
+			break;
+	}
+
+	if (cnt == 0)
+		printf("YES\n");
+	else
+		printf("NO\n");
+	
+	return 0;
 }
+
+
 
 
 ////7.영어단어복구-강의풀이
