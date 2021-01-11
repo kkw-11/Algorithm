@@ -1,34 +1,60 @@
+//55.기차운행(stack)
 #include <stdio.h>
 #include <stack>
 using namespace std;
-
 int main() {
-	//freopen("input.txt", "rt", stdin);
-	stack<char> s;
-	int flag = 0; //상태 변수
-	char ch[100];
-	scanf("%s", ch);
-	for (int i = 0; ch[i]; ++i) {
-
-		if (ch[i] == '(')
-			s.push(ch[i]);
-		else {
-			if (s.empty()) { 
-				printf("NO\n");
-				++flag;
-				break;
-			}
+	stack<int> s;
+	int N;
+	scanf("%d", &N);
+	int num[30];
+	int stack[30];
+	int check = 1;
+	for (int i = 0; i < N; ++i) {
+		scanf("%d", &num[i]);
+	}
+	for (int i = 0; i < N; ++i) {
+		s.push(num[i]);
+		if (num[i] == check) {
 			s.pop();
+			++check;
 		}
-	}
 
-	if (flag == 0) {
-		if (s.empty()) printf("YES\n");
-		else printf("NO\n");
 	}
-
+	
 	return 0;
 }
+
+//55.올바른괄호 (STL stack)
+//#include <stdio.h>
+//#include <stack>
+//using namespace std;
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	stack<char> s;
+//	int flag = 0; //상태 변수
+//	char ch[100];
+//	scanf("%s", ch);
+//	for (int i = 0; ch[i]; ++i) {
+//		if (ch[i] == '(')
+//			s.push(ch[i]);
+//		else {
+//			if (s.empty()) { 
+//				printf("NO\n");
+//				++flag;
+//				break;
+//			}
+//			s.pop();
+//		}
+//	}
+//
+//	if (flag == 0) {
+//		if (s.empty()) printf("YES\n");
+//		else printf("NO\n");
+//	}
+//
+//	return 0;
+//}
 
 //#include <stdio.h>
 //#include <stack>
