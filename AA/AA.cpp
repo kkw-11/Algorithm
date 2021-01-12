@@ -3,63 +3,71 @@
 #include <stack>
 #define MAX 30
 
-int stack[MAX];
+int stack[MAX] = { 0 };
 int top;
 
 void InitStack() {
-	top = -1;
+	top = 0;
 }
 
 void Push(int data) {
 	if (top == MAX) return;
-	stack[++top] = data;
+	stack[top++] = data;
 }
 
 int Pop() {
-	if (top == -1) return -1;
-	return stack[top--];
+	if (top == 0) return -1;
+	return stack[--top];
 }
 
 int main() {
-	freopen("input.txt", "rt", stdin);
+	//freopen("input.txt", "rt", stdin);
 	int N;
 	scanf("%d", &N);
 	int a[30];
-	int b[30];
+	char ch[61];
 	int impossible = 0, check = 1;
 
 	for (int i = 0; i < N; ++i) {
 		scanf("%d", &a[i]);
 	}
+	InitStack();
 
-	for (int i = 0; i < N - 1; ++i) {
-		if (a[i] < a[i + 1])
-			for (int j = 0; j < N; ++j) {
-				if ((a[i] - 1) == a[j]) {
-					if (j > i) {
-						printf("impossible\n");
-						++impossible;
-						break;
-					}
-				}
+	int i = 0, j = 0;
+	while (1) {
+		if (i < N) {
+			Push(a[i++]);
+			ch[j++] = 'P';
+		}
+		if (i == N && stack[top-1] > check) {
+			impossible = 1;
+			break;
+		}
+
+		while (1) {
+			if (stack[top-1] == check) {
+				Pop();
+				ch[j++] = 'O';
+				++check;
 			}
+			else
+				break;
+		}
+		
+		if (j == 2 * N)
+			break;
 	}
 
-	if (!impossible) {
-		for (int i = 0; i < N; ++i) {
-			Push(a[i]);
-			printf("P");
-			if (stack[i] == check)
-			{
-				Pop();
-				++check;
-				printf("O");
-			}
-		}
+	if (impossible)
+		printf("impossible");
+	else {
+		ch[j] = '\0';
+		printf("%s", ch);
 
 	}
 
 	return 0;
+
 }
 
 
