@@ -1,28 +1,67 @@
 //55.기차운행(stack)
 #include <stdio.h>
 #include <stack>
-using namespace std;
+#define MAX 30
+
+int stack[MAX];
+int top;
+
+void InitStack() {
+	top = -1;
+}
+
+void Push(int data) {
+	if (top == MAX) return;
+	stack[++top] = data;
+}
+
+int Pop() {
+	if (top == -1) return -1;
+	return stack[top--];
+}
+
 int main() {
-	stack<int> s;
+	freopen("input.txt", "rt", stdin);
 	int N;
 	scanf("%d", &N);
-	int num[30];
-	int stack[30];
-	int check = 1;
+	int a[30];
+	int b[30];
+	int impossible = 0, check = 1;
+
 	for (int i = 0; i < N; ++i) {
-		scanf("%d", &num[i]);
+		scanf("%d", &a[i]);
 	}
-	for (int i = 0; i < N; ++i) {
-		s.push(num[i]);
-		if (num[i] == check) {
-			s.pop();
-			++check;
+
+	for (int i = 0; i < N - 1; ++i) {
+		if (a[i] < a[i + 1])
+			for (int j = 0; j < N; ++j) {
+				if ((a[i] - 1) == a[j]) {
+					if (j > i) {
+						printf("impossible\n");
+						++impossible;
+						break;
+					}
+				}
+			}
+	}
+
+	if (!impossible) {
+		for (int i = 0; i < N; ++i) {
+			Push(a[i]);
+			printf("P");
+			if (stack[i] == check)
+			{
+				Pop();
+				++check;
+				printf("O");
+			}
 		}
 
 	}
-	
+
 	return 0;
 }
+
 
 //55.올바른괄호 (STL stack)
 //#include <stdio.h>
