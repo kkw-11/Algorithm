@@ -1,3 +1,75 @@
+//55.기차운행(stack)
+#include <stdio.h>
+#include <stack>
+#define MAX 30
+
+int stack[MAX] = { 0 };
+int top;
+
+void InitStack() {
+	top = 0;
+}
+
+void Push(int data) {
+	if (top == MAX) return;
+	stack[top++] = data;
+}
+
+int Pop() {
+	if (top == 0) return -1;
+	return stack[--top];
+}
+
+int main() {
+	//freopen("input.txt", "rt", stdin);
+	int N;
+	scanf("%d", &N);
+	int a[30];
+	char ch[61];
+	int impossible = 0, check = 1;
+
+	for (int i = 0; i < N; ++i) {
+		scanf("%d", &a[i]);
+	}
+	InitStack();
+
+	int i = 0, j = 0;
+	while (1) {
+		if (i < N) {
+			Push(a[i++]);
+			ch[j++] = 'P';
+		}
+		if (i == N && stack[top - 1] > check) {
+			impossible = 1;
+			break;
+		}
+
+		while (1) {
+			if (stack[top - 1] == check) {
+				Pop();
+				ch[j++] = 'O';
+				++check;
+			}
+			else
+				break;
+		}
+
+		if (j == 2 * N)
+			break;
+	}
+
+	if (impossible)
+		printf("impossible");
+	else {
+		ch[j] = '\0';
+		printf("%s", ch);
+
+	}
+
+	return 0;
+
+}
+
 ////56. 재귀함수 분석
 //
 //#include <stdio.h>
