@@ -1,62 +1,95 @@
-//55.기차운행(stack)
+//9. 모두의 약수
 #include <stdio.h>
-#define MAX 30
-
-int stack[MAX] = { 0 };
-int top;
-
-void InitStack() {
-	top = 0;
-}
-
-void Push(int data) {
-	if (top == MAX) return;
-	stack[top++] = data;
-}
-
-int Pop() {
-	if (top == 0) return -1;
-	return stack[--top];
-}
-int Empty() {
-	if (top == 0) return 1;
-	return 0;
-}
-
 int main() {
-	//freopen("input.txt", "rt", stdin);
-	int N;
-	scanf("%d", &N);
 
-	int i, m, check = 1, j = 0;
-	char ch[61];
+	int n;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; ++i) {
+		int num = i;
+		int cnt = 0;
+		int quotient = num;
 
-	for (i = 0; i < N; ++i) {
-		scanf("%d", &m);
-		Push(m);
-		ch[j++] = 'P';
-		while (1) {
-			if (Empty()) break;
-			if (stack[top - 1] == check) {
-				Pop();
-				ch[j++] = 'O';
-				++check;
+		//약수 개수 구하기
+		if (i == 1)//1의 약수 개수 무조건 1
+			printf("%d ", 1);
+		else {//2부터 약수 개수 구하기 반복문 횟수 줄이기 위해서 나누는 값으 1부터 n 까지 하지말고 몫 직전까지 
+			for (int j = 1; j < quotient; ++j) {
+				if (num % j == 0) {
+					quotient = num / j;
+					if (j == quotient)  
+						cnt += 1; // 제곱수의 경우 약수 개수 1개 증가
+					else
+						cnt += 2; // 제곱 수가 아닌 이상 약수의 개수 2개씩 증가
+				}
 			}
-			else
-				break;
+
+			printf("%d ", cnt);
 		}
 	}
-	if (!Empty())
-		printf("impossible\n");
-	else {
-		ch[j] = '\0';
-		printf("%s", ch);
-	}
-
 
 	return 0;
 
 }
+
+////55.기차운행(stack)
+//#include <stdio.h>
+//#define MAX 30
+//
+//int stack[MAX] = { 0 };
+//int top;
+//
+//void InitStack() {
+//	top = 0;
+//}
+//
+//void Push(int data) {
+//	if (top == MAX) return;
+//	stack[top++] = data;
+//}
+//
+//int Pop() {
+//	if (top == 0) return -1;
+//	return stack[--top];
+//}
+//int Empty() {
+//	if (top == 0) return 1;
+//	return 0;
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int N;
+//	scanf("%d", &N);
+//
+//	int i, m, check = 1, j = 0;
+//	char ch[61];
+//
+//	for (i = 0; i < N; ++i) {
+//		scanf("%d", &m);
+//		Push(m);
+//		ch[j++] = 'P';
+//		while (1) {
+//			if (Empty()) break;
+//			if (stack[top - 1] == check) {
+//				Pop();
+//				ch[j++] = 'O';
+//				++check;
+//			}
+//			else
+//				break;
+//		}
+//	}
+//	if (!Empty())
+//		printf("impossible\n");
+//	else {
+//		ch[j] = '\0';
+//		printf("%s", ch);
+//	}
+//
+//
+//	return 0;
+//
+//}
 
 ////55.기차운행(stack)
 //#include <stdio.h>
