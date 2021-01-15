@@ -1,42 +1,112 @@
-//10.자릿수의 합
+//11.자릿수의 합
 #include <stdio.h>
-#include <stdlib.h>
-int digit_sum(int x) {
-	int sum = 0;
-	while (x > 0) {
-		sum += x % 10;
-		x = x / 10;
-	}
-	return sum;
-}
+
 int main() {
-	freopen("input.txt", "rt", stdin);
-	int T;
-	int num, res, summaxnum, max = 0;
-	scanf("%d", &T);
-	int j = 0;
+	//freopen("input.txt", "rt", stdin);
+	int num;
+	scanf("%d", &num);
+	int digit;
+	int cnt = 0;
+	for (int i = 1; i <= num; ++i) {
+		digit = i;
 
-	for (int i = 0; i < T; ++i) {
-		scanf("%d", &num);
-
-
-		//각자리수 합구하기
-		res = digit_sum(num);
-
-		//각 자리수 합 최대값 비교
-		if (max < res) {
-			max = res;
-			summaxnum = num; //각 자리 합 max 되는 숫자 기억
-		}
-		else if (max == res) {//자리수 합이 max값과 같게 되는 숫자가 있을 경우 기존에 저장해둔 summaxnum과 지금 num을 비교해서 큰값을 기억
-			if (num > summaxnum)
-				summaxnum = num;
+		//각 숫자가 몇자리인지 카운팅 누적
+		while (digit > 0) {
+			digit = digit / 10;
+			++cnt;
 		}
 	}
 
-	printf("%d", summaxnum);
+
+	printf("%d", cnt);
+
 	return 0;
 }
+
+
+////11.자릿수의 합
+//#include <stdio.h>
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int num, cnt = -1, res = 0;
+//	scanf("%d", &num);
+//	int digit = num;
+//
+//	//자리수 구하기
+//	while (digit > 0) {
+//		digit = digit / 10;
+//		++cnt;
+//	}
+//
+//	switch (cnt)
+//	{
+//	case 0:
+//		res = 1 * num;
+//		break;
+//	case 1:
+//		res = 1 * 9 + 2 * (num - 9);
+//		break;
+//	case 2:
+//		res = 1 * 9 + 2 * 90 + 3 * (num - 99);
+//		break;
+//	case 3:
+//		res = 1 * 9 + 2 * 90 + 3 * 900 + 4 * (num - 999);
+//		break;
+//	case 4:
+//		res = 1 * 9 + 2 * 90 + 3 * 900 + 4 * 9000 + 5 * (num - 9999);
+//		break;
+//	case 5:
+//		res = 1 * 9 + 2 * 90 + 3 * 900 + 4 * 9000 + 5 * 90000 + 6 * (num - 99999);
+//		break;
+//	default:
+//		break;
+//	}
+//
+//	printf("%d", res);
+//
+//	return 0;
+//}
+
+////10.자릿수의 합
+//#include <stdio.h>
+//#include <stdlib.h>
+//int digit_sum(int x) {
+//	int sum = 0;
+//	while (x > 0) {
+//		sum += x % 10;
+//		x = x / 10;
+//	}
+//	return sum;
+//}
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int T;
+//	int num, res, summaxnum, max = 0;
+//	scanf("%d", &T);
+//	int j = 0;
+//
+//	for (int i = 0; i < T; ++i) {
+//		scanf("%d", &num);
+//
+//
+//		//각자리수 합구하기
+//		res = digit_sum(num);
+//
+//		//각 자리수 합 최대값 비교
+//		if (max < res) {
+//			max = res;
+//			summaxnum = num; //각 자리 합 max 되는 숫자 기억
+//		}
+//		else if (max == res) {//자리수 합이 max값과 같게 되는 숫자가 있을 경우 기존에 저장해둔 summaxnum과 지금 num을 비교해서 큰값을 기억
+//			if (num > summaxnum)
+//				summaxnum = num;
+//		}
+//	}
+//
+//	printf("%d", summaxnum);
+//	return 0;
+//}
 
 ////10.자릿수의 합
 //#include <stdio.h>
