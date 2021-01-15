@@ -3,8 +3,7 @@
 #include <stdlib.h>
 int digit_sum(int x) {
 	int sum = 0;
-	while (1) {
-		if (x == 0) break;
+	while (x > 0) {
 		sum += x % 10;
 		x = x / 10;
 	}
@@ -13,41 +12,82 @@ int digit_sum(int x) {
 int main() {
 	freopen("input.txt", "rt", stdin);
 	int T;
-	int res, summaxnum = 0, resnum, max = 0;
-	int arrnum[100];
+	int num, res, summaxnum, max = 0;
 	scanf("%d", &T);
 	int j = 0;
 
-	int* pnum = (int*)malloc(sizeof(int) * T);
-	int* pres = (int*)malloc(sizeof(int) * T);
 	for (int i = 0; i < T; ++i) {
-		scanf("%d", &pnum[i]);
-		
-		
+		scanf("%d", &num);
+
+
 		//각자리수 합구하기
-		pres[i] = digit_sum(pnum[i]);
+		res = digit_sum(num);
 
 		//각 자리수 합 최대값 비교
-		if (max <= pres[i]) {
-			max = pres[i];
-			summaxnum = pnum[i];
+		if (max < res) {
+			max = res;
+			summaxnum = num; //각 자리 합 max 되는 숫자 기억
 		}
-
-	}
-
-	//max값에 해당하는 숫자중 최대값 구하기
-	for (int i = 0; i < T; ++i) {
-		if (pres[i] == max)
-			if (pnum[i] > summaxnum)
-				summaxnum = pnum[i];
-	}
-
+		else if (max == res) {//자리수 합이 max값과 같게 되는 숫자가 있을 경우 기존에 저장해둔 summaxnum과 지금 num을 비교해서 큰값을 기억
+			if (num > summaxnum)
+				summaxnum = num;
+		}
+	}	
 
 	printf("%d", summaxnum);
-	free(pnum);
-	free(pres);
 	return 0;
 }
+
+////10.자릿수의 합
+//#include <stdio.h>
+//#include <stdlib.h>
+//int digit_sum(int x) {
+//	int sum = 0;
+//	while (1) {
+//		if (x == 0) break;
+//		sum += x % 10;
+//		x = x / 10;
+//	}
+//	return sum;
+//}
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int T;
+//	int res, summaxnum = 0, resnum, max = 0;
+//	int arrnum[100];
+//	scanf("%d", &T);
+//	int j = 0;
+//
+//	int* pnum = (int*)malloc(sizeof(int) * T);
+//	int* pres = (int*)malloc(sizeof(int) * T);
+//	for (int i = 0; i < T; ++i) {
+//		scanf("%d", &pnum[i]);
+//		
+//		
+//		//각자리수 합구하기
+//		pres[i] = digit_sum(pnum[i]);
+//
+//		//각 자리수 합 최대값 비교
+//		if (max <= pres[i]) {
+//			max = pres[i];
+//			summaxnum = pnum[i];
+//		}
+//
+//	}
+//
+//	//max값에 해당하는 숫자중 최대값 구하기
+//	for (int i = 0; i < T; ++i) {
+//		if (pres[i] == max)
+//			if (pnum[i] > summaxnum)
+//				summaxnum = pnum[i];
+//	}
+//
+//
+//	printf("%d", summaxnum);
+//	free(pnum);
+//	free(pres);
+//	return 0;
+//}
 
 ////9. 모두의 약수
 //#include <stdio.h>
