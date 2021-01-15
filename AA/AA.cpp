@@ -1,34 +1,110 @@
-//9. 모두의 약수
+//10.자릿수의 합
 #include <stdio.h>
+#include <stdlib.h>
+int digit_sum(int x) {
+	int sum = 0;
+	while (1) {
+		if (x == 0) break;
+		sum += x % 10;
+		x = x / 10;
+	}
+	return sum;
+}
 int main() {
+	freopen("input.txt", "rt", stdin);
+	int T;
+	int res, summaxnum = 0, resnum, max = 0;
+	int arrnum[100];
+	scanf("%d", &T);
+	int j = 0;
 
-	int n;
-	scanf("%d", &n);
-	for (int i = 1; i <= n; ++i) {
-		int cnt = 0;
-		int quotient = i;
+	int* pnum = (int*)malloc(sizeof(int) * T);
+	int* pres = (int*)malloc(sizeof(int) * T);
+	for (int i = 0; i < T; ++i) {
+		scanf("%d", &pnum[i]);
+		
+		
+		//각자리수 합구하기
+		pres[i] = digit_sum(pnum[i]);
 
-		//약수 개수 구하기
-		if (i == 1)//1의 약수 개수 무조건 1 // else 조건으로 반복문 실행하면 0 이 출력됨
-			printf("%d ", 1);
-		else {//2부터 약수 개수 구하기 반복문 횟수 줄이기 위해서 나누는 값으 1부터 n 까지 하지말고 몫 직전까지 
-			for (int j = 1; j < quotient; ++j) {
-				if (i % j == 0) {
-					quotient = i / j;
-					if (j == quotient)  
-						cnt += 1; // 제곱수의 경우 약수 개수 1개 증가
-					else
-						cnt += 2; // 제곱 수가 아닌 이상 약수의 개수 2개씩 증가
-				}
-			}
-
-			printf("%d ", cnt);
+		//각 자리수 합 최대값 비교
+		if (max <= pres[i]) {
+			max = pres[i];
+			summaxnum = pnum[i];
 		}
+
 	}
 
-	return 0;
+	//max값에 해당하는 숫자중 최대값 구하기
+	for (int i = 0; i < T; ++i) {
+		if (pres[i] == max)
+			if (pnum[i] > summaxnum)
+				summaxnum = pnum[i];
+	}
 
+
+	printf("%d", summaxnum);
+	free(pnum);
+	free(pres);
+	return 0;
 }
+
+////9. 모두의 약수
+//#include <stdio.h>
+//int cnt[500001]; // 전역변수는 자동 0으로 초기화됨
+//
+//int main() {
+//
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 1; i <= n; ++i) {//1~n 까지 반복 실행
+//		//약수의 개수 배수로 구하기 (i~n 까지 i의 배수에 1씩 더하기)
+//		for (int j = i; j <= n; j = j + i) {
+//			++cnt[j];
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; ++i) {
+//		printf("%d ",cnt[i]);
+//	}
+//
+//	return 0;
+//
+//}
+
+////9. 모두의 약수
+//#include <stdio.h>
+//int main() {
+//
+//	int n;
+//	scanf("%d", &n);
+//	for (int i = 1; i <= n; ++i) {
+//		int cnt = 0;
+//		int quotient = i;
+//
+//		//약수 개수 구하기
+//		if (i == 1)//1의 약수 개수 무조건 1 // else 조건으로 반복문 실행하면 0 이 출력됨
+//			printf("%d ", 1);
+//		else {//2부터 약수 개수 구하기 반복문 횟수 줄이기 위해서 나누는 값으 1부터 n 까지 하지말고 몫 직전까지 
+//			for (int j = 1; j < quotient; ++j) {
+//				if (i % j == 0) {
+//					quotient = i / j;
+//					if (j == quotient)  
+//						cnt += 1; // 제곱수의 경우 약수 개수 1개 증가
+//					else
+//						cnt += 2; // 제곱 수가 아닌 이상 약수의 개수 2개씩 증가
+//				}
+//			}
+//
+//			printf("%d ", cnt);
+//		}
+//	}
+//
+//	return 0;
+//
+
+
+
 
 ////55.기차운행(stack)
 //#include <stdio.h>
