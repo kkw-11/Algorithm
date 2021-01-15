@@ -1,4 +1,4 @@
-//10.자릿수의 합
+//11.자릿수의 합
 #include <stdio.h>
 
 int main() {
