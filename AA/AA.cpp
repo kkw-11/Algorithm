@@ -1,30 +1,59 @@
-//11.자릿수의 합
+//12.숫자의 총 개수(large)
 #include <stdio.h>
-
 int main() {
 	//freopen("input.txt", "rt", stdin);
-	int num;
-	scanf("%d", &num);
-	int digit;
-	int cnt = 0;
-	for (int i = 1; i <= num; ++i) {		
-		digit = i;
 
-		//각 숫자가 몇자리인지 카운팅 누적
-		while (digit > 0) {
-			digit = digit / 10;
-			++cnt;
-		}
+
+	int d = 9;
+	int sum = 0;
+	sum = sum + d;
+	int n, i = 1;
+	scanf("%d", &n);
+	int res = 9;
+	while (sum < n) {
+		++i;//2
+		res = res + i * (n - sum);
+		d = d * 10;// 90
+		sum = sum + d;//9 + 90
 	}
 
-
-	printf("%d", cnt);
-
+	if (n < 10) {
+		printf("%d", n);
+	}
+	else
+		printf("%d", res);
 	return 0;
 }
 
 
-////11.자릿수의 합
+
+////11.숫자의 총 개수
+//#include <stdio.h>
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int num;
+//	scanf("%d", &num);
+//	int digit;
+//	int cnt = 0;
+//	for (int i = 1; i <= num; ++i) {		
+//		digit = i;
+//
+//		//각 숫자가 몇자리인지 카운팅 누적
+//		while (digit > 0) {
+//			digit = digit / 10;
+//			++cnt;
+//		}
+//	}
+//
+//
+//	printf("%d", cnt);
+//
+//	return 0;
+//}
+
+
+////11.숫자의 총 개수
 //#include <stdio.h>
 //
 //int main() {
