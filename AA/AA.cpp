@@ -1,24 +1,63 @@
-//12.숫자의 총 개수(large)
+//32 선택정렬
 #include <stdio.h>
+void Swap(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+
 int main() {
-	//freopen("input.txt", "rt", stdin);
+	freopen("input.txt", "rt", stdin);
 
-	int d = 9, lastdigitmax = 0,i = 1;
-	int n, res = 0;
-	scanf("%d", &n);
-
-	//자리수 체크 ( 직전자리최대수 + 해당자리숫자 개수)= 해당자리 최대수
-	//ex) 3자리수 체크(직전자리 최대수 9 + 해당자리 숫자개수 90 = 99)
-	while (lastdigitmax + d < n) {
-		res = res + i * d;//직전 자리수와 사용한숫자 누적
-		++i;//현재 몇자리 인지 체크
-		lastdigitmax = lastdigitmax + d;
-		d = d * 10;
+	int num[100] = {0};
+	int n, minIdx = 0;
+	scanf("%d",&n);
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &num[i]);
 	}
 
-	printf("%d", res + i*(n - lastdigitmax));
+	
+	for (int i = 0; i < n - 1; ++i) {
+		//최소값 찾기
+		minIdx = i;
+		for (int j = i + 1; j < n; ++j) {
+			if (num[minIdx] > num[j])
+				minIdx = j;
+		}
+		//최소값 교환
+		Swap(&num[i],&num[minIdx]);
+
+	}
+
+	for (int i = 0; i < n; ++i) {
+		printf("%d ", num[i]);
+	}
+
 	return 0;
 }
+
+////12.숫자의 총 개수(large)
+//#include <stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//
+//	int d = 9, lastdigitmax = 0,i = 1;
+//	int n, res = 0;
+//	scanf("%d", &n);
+//
+//	//자리수 체크 ( 직전자리최대수 + 해당자리숫자 개수)= 해당자리 최대수
+//	//ex) 3자리수 체크(직전자리 최대수 9 + 해당자리 숫자개수 90 = 99)
+//	while (lastdigitmax + d < n) {
+//		res = res + i * d;//직전 자리수와 사용한숫자 누적
+//		++i;//현재 몇자리 인지 체크
+//		lastdigitmax = lastdigitmax + d;
+//		d = d * 10;
+//	}
+//
+//	printf("%d", res + i*(n - lastdigitmax));
+//	return 0;
+//}
 
 
 ////12.숫자의 총 개수(large)
