@@ -15,8 +15,7 @@ int main() {
 	for (int i = 0; i < n; ++i) {
 		scanf("%d", &num[i]);
 	}
-
-	
+		
 	for (int i = 0; i < n - 1; ++i) {
 		//최소값 찾기
 		minIdx = i;
