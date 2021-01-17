@@ -6,7 +6,6 @@ void Swap(int* a, int* b) {
 	*b = temp;
 }
 
-
 int main() {
 	freopen("input.txt", "rt", stdin);
 
