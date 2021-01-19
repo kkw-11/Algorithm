@@ -1,3 +1,5 @@
+//32. 3등 성적은?
+
 #include <stdio.h>
 int main() {
 	int T;
