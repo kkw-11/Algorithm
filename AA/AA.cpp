@@ -1,39 +1,76 @@
-//32 선택정렬
 #include <stdio.h>
-void Swap(int* a, int* b) {
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 int main() {
-	freopen("input.txt", "rt", stdin);
-
-	int num[100] = {0};
-	int n, minIdx = 0;
-	scanf("%d",&n);
-	for (int i = 0; i < n; ++i) {
-		scanf("%d", &num[i]);
+	int T;
+	int grade[100] = { 0 };
+	int minIdx;
+	scanf("%d", &T);
+	for (int i = 0; i < T; ++i) {
+		scanf("%d", &grade[i]);
 	}
-		
-	for (int i = 0; i < n - 1; ++i) {
-		//최소값 찾기
+
+	for (int i = 0; i < T - 1; ++i) {
 		minIdx = i;
-		for (int j = i + 1; j < n; ++j) {
-			if (num[minIdx] > num[j])
-				minIdx = j;
+		for (int j = i + 1; j < T; ++j) {
+			if (grade[minIdx] > grade[j]) {
+				int temp = grade[minIdx];
+				grade[minIdx] = grade[j];
+				grade[j] = temp;
+			}
 		}
-		//최소값 교환
-		Swap(&num[i],&num[minIdx]);
-
+	}
+	int max = grade[T - 1];
+	int cnt = 1;
+	for (int i = T - 1; i >= 0; --i) {
+		if (grade[i] < max) {
+			++cnt;
+			max = grade[i];
+		}
+		if (cnt == 3)
+			break;
 	}
 
-	for (int i = 0; i < n; ++i) {
-		printf("%d ", num[i]);
-	}
+	printf("%d", max);
+
 
 	return 0;
 }
+
+////32 선택정렬
+//#include <stdio.h>
+//void Swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//
+//	int num[100] = {0};
+//	int n, minIdx = 0;
+//	scanf("%d",&n);
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//		
+//	for (int i = 0; i < n - 1; ++i) {
+//		//최소값 찾기
+//		minIdx = i;
+//		for (int j = i + 1; j < n; ++j) {
+//			if (num[minIdx] > num[j])
+//				minIdx = j;
+//		}
+//		//최소값 교환
+//		Swap(&num[i],&num[minIdx]);
+//
+//	}
+//
+//	for (int i = 0; i < n; ++i) {
+//		printf("%d ", num[i]);
+//	}
+//
+//	return 0;
+//}
 
 ////12.숫자의 총 개수(large)
 //#include <stdio.h>
