@@ -1,74 +1,115 @@
-//55.기차운행(stack)
+//32. 3등 성적은?
+
 #include <stdio.h>
-#include <stack>
-#define MAX 30
-
-int stack[MAX] = { 0 };
-int top;
-
-void InitStack() {
-	top = 0;
-}
-
-void Push(int data) {
-	if (top == MAX) return;
-	stack[top++] = data;
-}
-
-int Pop() {
-	if (top == 0) return -1;
-	return stack[--top];
-}
-
 int main() {
-	//freopen("input.txt", "rt", stdin);
-	int N;
-	scanf("%d", &N);
-	int a[30];
-	char ch[61];
-	int impossible = 0, check = 1;
-
-	for (int i = 0; i < N; ++i) {
-		scanf("%d", &a[i]);
+	int T;
+	int grade[100] = { 0 };
+	int minIdx;
+	scanf("%d", &T);
+	for (int i = 0; i < T; ++i) {
+		scanf("%d", &grade[i]);
 	}
-	InitStack();
-
-	int i = 0, j = 0;
-	while (1) {
-		if (i < N) {
-			Push(a[i++]);
-			ch[j++] = 'P';
-		}
-		if (i == N && stack[top-1] > check) {
-			impossible = 1;
-			break;
-		}
-
-		while (1) {
-			if (stack[top-1] == check) {
-				Pop();
-				ch[j++] = 'O';
-				++check;
+	//오름차순 정렬
+	for (int i = 0; i < T - 1; ++i) {
+		minIdx = i;
+		for (int j = i + 1; j < T; ++j) {
+			if (grade[minIdx] > grade[j]) {
+				int temp = grade[minIdx];
+				grade[minIdx] = grade[j];
+				grade[j] = temp;
 			}
-			else
-				break;
 		}
-		
-		if (j == 2 * N)
+	}
+
+	//중복 값 존재 할때 3등 구하기
+	int max = grade[T - 1];
+	int cnt = 1;
+	for (int i = T - 1; i >= 0; --i) {
+		if (grade[i] < max) {
+			++cnt;
+			max = grade[i];
+		}
+		if (cnt == 3)
 			break;
 	}
 
-	if (impossible)
-		printf("impossible");
-	else {
-		ch[j] = '\0';
-		printf("%s", ch);
+	printf("%d", max);
 
-	}
 
 	return 0;
-
 }
+
+////55.기차운행(stack)
+//#include <stdio.h>
+//#include <stack>
+//#define MAX 30
+//
+//int stack[MAX] = { 0 };
+//int top;
+//
+//void InitStack() {
+//	top = 0;
+//}
+//
+//void Push(int data) {
+//	if (top == MAX) return;
+//	stack[top++] = data;
+//}
+//
+//int Pop() {
+//	if (top == 0) return -1;
+//	return stack[--top];
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int N;
+//	scanf("%d", &N);
+//	int a[30];
+//	char ch[61];
+//	int impossible = 0, check = 1;
+//
+//	for (int i = 0; i < N; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//	InitStack();
+//
+//	int i = 0, j = 0;
+//	while (1) {
+//		if (i < N) {
+//			Push(a[i++]);
+//			ch[j++] = 'P';
+//		}
+//		if (i == N && stack[top-1] > check) {
+//			impossible = 1;
+//			break;
+//		}
+//
+//		while (1) {
+//			if (stack[top-1] == check) {
+//				Pop();
+//				ch[j++] = 'O';
+//				++check;
+//			}
+//			else
+//				break;
+//		}
+//		
+//		if (j == 2 * N)
+//			break;
+//	}
+//
+//	if (impossible)
+//		printf("impossible");
+//	else {
+//		ch[j] = '\0';
+//		printf("%s", ch);
+//
+//	}
+//
+//	return 0;
+//
+//}
 
 
 //55.올바른괄호 (STL stack)
