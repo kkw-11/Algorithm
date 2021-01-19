@@ -7,7 +7,7 @@ int main() {
 	for (int i = 0; i < T; ++i) {
 		scanf("%d", &grade[i]);
 	}
-
+	//오름차순 정렬
 	for (int i = 0; i < T - 1; ++i) {
 		minIdx = i;
 		for (int j = i + 1; j < T; ++j) {
@@ -18,6 +18,8 @@ int main() {
 			}
 		}
 	}
+
+	//중복 값 존재 할때 3등 구하기
 	int max = grade[T - 1];
 	int cnt = 1;
 	for (int i = T - 1; i >= 0; --i) {
