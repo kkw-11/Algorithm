@@ -8,25 +8,52 @@ void Swap(int* a, int* b) {
 #include <stdio.h>
 int main() {
 	int T;
-	scanf("%d", &T);
+	scanf("%d", &n);
 	int num[100];
-	for (int i = 0; i < T; ++i) {
+	for (int i = 0; i < n; ++i) {
 		scanf("%d", &num[i]);
 	}
-	for (int i = T - 1; i > 0; --i) {
-		for (int j = 0; j < i; ++j) {
+
+	for (int i = 0; i < n-1; ++i) {
+		for (int j = 0; j < n-i-1; ++j) {
 			if (num[j] > num[j + 1]) {
 				Swap(&num[j], &num[j + 1]);
 			}
 
 		}
 	}
-		
-
 
 
 	return 0;
 }
+
+////34 버블정렬
+//void Swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//#include <stdio.h>
+//int main() {
+//	int T;
+//	scanf("%d", &T);
+//	int num[100];
+//	for (int i = 0; i < T; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//	for (int i = T - 1; i > 0; --i) {
+//		for (int j = 0; j < i; ++j) {
+//			if (num[j] > num[j + 1]) {
+//				Swap(&num[j], &num[j + 1]);
+//			}
+//
+//		}
+//	}
+//
+//
+//	return 0;
+//}
 
 ////32. 3등 성적은?
 //
