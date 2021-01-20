@@ -1,11 +1,5 @@
-//35 Special Sort(Google Interview)
+//36. »ðÀÔÁ¤·Ä
 #include <stdio.h>
-
-void Swap(int* a, int* b) {
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
 
 void PrintArray(int arr[], int size) {
 	for (int i = 0; i < size; ++i) {
@@ -15,29 +9,77 @@ void PrintArray(int arr[], int size) {
 }
 
 int main() {
-	//freopen("input.txt", "rt", stdin);
+	freopen("input.txt", "rt", stdin);
 	int n;
 	int num[100];
-	int num2[100];
 	scanf("%d", &n);
 
 	for (int i = 0; i < n; ++i) {
 		scanf("%d", &num[i]);
 	}
 
-	//PrintArray(num, n);
-
-	for (int i = 0; i < n - 1; ++i){
-		for (int j = 0; j < (n - 1) - i; ++j) {
-			if (num[j] > 0 && num[j + 1] < 0)
-				Swap(&num[j], &num[j + 1]);
-		}
-	}
-
 	PrintArray(num, n);
+
+	int value;
+	int j;
+	for (int i = 1; i < n; ++i) {
+		value = num[i];
+		for (j = i - 1; j >= 0; --j) {
+			if (num[j] > value) {
+				num[j + 1] = num[j];
+			}
+			else {
+				break;
+			}
+		}
+		num[j + 1] = value;
+	}
+	PrintArray(num, n);
+
 
 	return 0;
 }
+
+////35 Special Sort(Google Interview)
+//#include <stdio.h>
+//
+//void Swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//void PrintArray(int arr[], int size) {
+//	for (int i = 0; i < size; ++i) {
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n;
+//	int num[100];
+//	int num2[100];
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//
+//	//PrintArray(num, n);
+//
+//	for (int i = 0; i < n - 1; ++i){
+//		for (int j = 0; j < (n - 1) - i; ++j) {
+//			if (num[j] > 0 && num[j + 1] < 0)
+//				Swap(&num[j], &num[j + 1]);
+//		}
+//	}
+//
+//	PrintArray(num, n);
+//
+//	return 0;
+//}
 
 ////35 Special Sort(Google Interview)
 //#include <stdio.h>
