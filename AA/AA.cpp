@@ -1,4 +1,4 @@
-//34 버블정렬
+//35 Special Sort(Google Interview)
 #include <stdio.h>
 
 void Swap(int* a, int* b) {
@@ -15,44 +15,43 @@ void PrintArray(int arr[], int size) {
 }
 
 int main() {
-	freopen("input.txt", "rt", stdin);
+	//freopen("input.txt", "rt", stdin);
 	int n;
 	int num[100];
+	int num2[100];
 	scanf("%d", &n);
 
 	for (int i = 0; i < n; ++i) {
 		scanf("%d", &num[i]);
 	}
 
-	PrintArray(num, n);
+	//PrintArray(num, n);
 	int cnt = 0;
-	for (int i = 0; i < n - 1; ++i) {
-		for (int j = i + 1; j < n; ++j) {
+	int check = 0;
+	for (int i = 0; i < n; ++i) {
+		for (int j = check; j < n; ++j) {
 			if (num[j] < 0) {
-				Swap(&num[j], &num[i]);
+				num2[i] = num[j];
+				check = j + 1;
 				++cnt;
 				break;
 			}
 		}
 	}
-
-	PrintArray(num, n);
-
-	for (int i = 0; i < cnt - 1; ++i)
-		for (int j = 0; j < cnt - i - 1; ++j) {
-			if (num[j] < num[j + 1])
-				Swap(&num[j], &num[j + 1]);
-		}
-
-
-	for (int i = 0; i < n - 1; ++i) {
-		for (int j = cnt; j < n - i - 1; ++j) {
-			if (num[j] > num[j + 1])
-				Swap(&num[j], &num[j + 1]);
+	int check2 = 0;
+	for (int i = cnt; i < n; ++i) {
+		for (int j = check2; j < n; ++j) {
+			if (num[j] > 0) {
+				num2[i] = num[j];
+				check2 = j + 1;
+				break;
+			}
 		}
 	}
 
-	PrintArray(num, n);
+	PrintArray(num2, n);
+
+	
 
 	return 0;
 }
