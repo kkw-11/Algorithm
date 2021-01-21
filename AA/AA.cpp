@@ -1,44 +1,85 @@
-//36. 삽입정렬
-#include <stdio.h>
-
-void PrintArray(int arr[], int size) {
-	for (int i = 0; i < size; ++i) {
-		printf("%d ", arr[i]);
-	}
-	printf("\n");
-}
-
+//39. 두 배열 합치기
+#include<stdio.h>
 int main() {
-	freopen("input.txt", "rt", stdin);
-	int n;
-	int num[100];
+	int n,n2, num[200];
 	scanf("%d", &n);
-
 	for (int i = 0; i < n; ++i) {
 		scanf("%d", &num[i]);
 	}
-
-	PrintArray(num, n);
-
-	int value;
+	scanf("%d", &n2);
+	
+	for (int i = n; i < n + n2; ++i) {
+		scanf("%d", &num[i]);
+	}
+	for (int i = 0; i < n + n2; ++i) {
+		printf("%d ", num[i]);
+	}
+	
 	int j;
-	for (int i = 1; i < n; ++i) {
-		value = num[i];
+	for (int i = 1; i < n + n2; ++i) {
+		int value = num[i];
 		for (j = i - 1; j >= 0; --j) {
-			if (num[j] > value) {
+			if (num[j] > value)
 				num[j + 1] = num[j];
-			}
 			else {
+				num[j + 1] = value;
 				break;
 			}
 		}
 		num[j + 1] = value;
+
 	}
-	PrintArray(num, n);
+
+	for (int i = 0; i < n + n2; ++i) {
+		printf("%d ", num[i]);
+	}
 
 
 	return 0;
 }
+
+
+////36. 삽입정렬
+//#include <stdio.h>
+//
+//void PrintArray(int arr[], int size) {
+//	for (int i = 0; i < size; ++i) {
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int n;
+//	int num[100];
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//
+//	PrintArray(num, n);
+//
+//	int value;
+//	int j;
+//	for (int i = 1; i < n; ++i) {
+//		value = num[i];
+//		for (j = i - 1; j >= 0; --j) {
+//			if (num[j] > value) {
+//				num[j + 1] = num[j];
+//			}
+//			else {
+//				break;
+//			}
+//		}
+//		num[j + 1] = value;
+//	}
+//	PrintArray(num, n);
+//
+//
+//	return 0;
+//}
 
 ////35 Special Sort(Google Interview)
 //#include <stdio.h>
