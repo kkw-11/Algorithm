@@ -1,404 +1,404 @@
-//39. 두 배열 합치기
-#include<stdio.h>
-int main() {
-	//freopen("input.txt", "rt", stdin);
-	int n1, n2, num1[100], num2[100], num3[200];
-
-	//첫 번째 배열 입력
-	scanf("%d", &n1);
-	for (int i = 0; i < n1; ++i) {
-		scanf("%d", &num1[i]);
-	}
-
-	//두 번째 배열 입력 받기
-	scanf("%d", &n2);
-	for (int i = 0; i < n2; ++i) {
-		scanf("%d", &num2[i]);
-	}
-
-	//두 배열 정렬하며 병합
-	int p1 = 0, p2 = 0, p3 = 0;
-	while (p1<n1 && p2<n2) {
-		if (num1[p1] < num2[p2]) {
-			num3[p3++] = num1[p1++];
-		}
-		else {
-			num3[p3++] = num2[p2++];
-		}		
-	}
-
-	while (p1 < n1) {
-		num3[p3++] = num1[p1++];
-	}
-
-	while (p2 < n2) {
-		num3[p3++] = num2[p2++];
-	}
-
-	//출력하기
-	for (int i = 0; i < n1 + n2; ++i) {
-		printf("%d ", num3[i]);
-	}
-
-
-	return 0;
-}
-
-//39. 두 배열 합치기
-#include<stdio.h>
-int main() {
-	//freopen("input.txt", "rt", stdin);
-	int n1, n2, num1[100], num2[100], num3[200];
-	
-	//첫 번째 배열 입력
-	scanf("%d", &n1);
-	for (int i = 0; i < n1; ++i) {
-		scanf("%d", &num1[i]);
-	}
-
-	//두 번째 배열 입력 받기
-	scanf("%d", &n2);
-	for (int i = 0; i < n2; ++i) {
-		scanf("%d", &num2[i]);
-	}
-	//두 배열 정렬하며 병합
-	int p1 = 0, p2 = 0, p3 = 0;
-	while (1) {
-		if (num1[p1] < num2[p2]) {
-			num3[p3] = num1[p1];
-			++p1;
-			++p3;
-		}
-		else {
-			num3[p3] = num2[p2];
-			++p2;
-			++p3;
-		}
-		if (p1 == n1 || p2 == n2)
-			break;
-	}
-
-	if (p1 == n1) {
-		for (int i = p2; i < n2; ++i) {
-			num3[p3] = num2[i];
-			++p3;
-		}
-	}
-	else if (p2==n2){
-		for (int i = p1; i < n1; ++i) {
-			num3[p3] = num1[i];
-			++p3;
-		}
-	}
-
-	//출력하기
-	for (int i = 0; i < n1 + n2; ++i) {
-		printf("%d ", num3[i]);
-	}
-
-
-	return 0;
-}
-
 ////39. 두 배열 합치기
 //#include<stdio.h>
 //int main() {
-//	int n,n2, num[200];
-//	scanf("%d", &n);
+//	//freopen("input.txt", "rt", stdin);
+//	int n1, n2, num1[100], num2[100], num3[200];
+//
 //	//첫 번째 배열 입력
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
+//	scanf("%d", &n1);
+//	for (int i = 0; i < n1; ++i) {
+//		scanf("%d", &num1[i]);
 //	}
 //
+//	//두 번째 배열 입력 받기
 //	scanf("%d", &n2);
-//	//두 번째 배열 첫 배열다음 인덱스부터 입력받기
-//	for (int i = n; i < n + n2; ++i) {
-//		scanf("%d", &num[i]);
+//	for (int i = 0; i < n2; ++i) {
+//		scanf("%d", &num2[i]);
 //	}
-//	//선택정렬로 배열 정렬하기
-//	int j;
-//	for (int i = 1; i < n + n2; ++i) {
-//		int value = num[i];
-//		for (j = i - 1; j >= 0; --j) {
-//			if (num[j] > value)
-//				num[j + 1] = num[j];
-//			else {
-//				num[j + 1] = value;
-//				break;
-//			}
+//
+//	//두 배열 정렬하며 병합
+//	int p1 = 0, p2 = 0, p3 = 0;
+//	while (p1<n1 && p2<n2) {
+//		if (num1[p1] < num2[p2]) {
+//			num3[p3++] = num1[p1++];
 //		}
-//		num[j + 1] = value;
-//
+//		else {
+//			num3[p3++] = num2[p2++];
+//		}		
 //	}
 //
-//	for (int i = 0; i < n + n2; ++i) {
-//		printf("%d ", num[i]);
+//	while (p1 < n1) {
+//		num3[p3++] = num1[p1++];
+//	}
+//
+//	while (p2 < n2) {
+//		num3[p3++] = num2[p2++];
+//	}
+//
+//	//출력하기
+//	for (int i = 0; i < n1 + n2; ++i) {
+//		printf("%d ", num3[i]);
 //	}
 //
 //
 //	return 0;
 //}
-
-
-////36. 삽입정렬
-//#include <stdio.h>
 //
-//void PrintArray(int arr[], int size) {
-//	for (int i = 0; i < size; ++i) {
-//		printf("%d ", arr[i]);
-//	}
-//	printf("\n");
-//}
-//
-//int main() {
-//	freopen("input.txt", "rt", stdin);
-//	int n;
-//	int num[100];
-//	scanf("%d", &n);
-//
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
-//	}
-//
-//	PrintArray(num, n);
-//
-//	int value;
-//	int j;
-//	for (int i = 1; i < n; ++i) {
-//		value = num[i];
-//		for (j = i - 1; j >= 0; --j) {
-//			if (num[j] > value) {
-//				num[j + 1] = num[j];
-//			}
-//			else {
-//				break;
-//			}
-//		}
-//		num[j + 1] = value;
-//	}
-//	PrintArray(num, n);
-//
-//
-//	return 0;
-//}
-
-////35 Special Sort(Google Interview)
-//#include <stdio.h>
-//
-//void Swap(int* a, int* b) {
-//	int temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
-//
-//void PrintArray(int arr[], int size) {
-//	for (int i = 0; i < size; ++i) {
-//		printf("%d ", arr[i]);
-//	}
-//	printf("\n");
-//}
-//
+////39. 두 배열 합치기
+//#include<stdio.h>
 //int main() {
 //	//freopen("input.txt", "rt", stdin);
-//	int n;
-//	int num[100];
-//	int num2[100];
-//	scanf("%d", &n);
-//
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
-//	}
-//
-//	//PrintArray(num, n);
-//
-//	for (int i = 0; i < n - 1; ++i){
-//		for (int j = 0; j < (n - 1) - i; ++j) {
-//			if (num[j] > 0 && num[j + 1] < 0)
-//				Swap(&num[j], &num[j + 1]);
-//		}
-//	}
-//
-//	PrintArray(num, n);
-//
-//	return 0;
-//}
-
-////35 Special Sort(Google Interview)
-//#include <stdio.h>
-//
-//void Swap(int* a, int* b) {
-//	int temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
-//
-//void PrintArray(int arr[], int size) {
-//	for (int i = 0; i < size; ++i) {
-//		printf("%d ", arr[i]);
-//	}
-//	printf("\n");
-//}
-//
-//int main() {
-//	//freopen("input.txt", "rt", stdin);
-//	int n;
-//	int num[100];
-//	int num2[100];
-//	scanf("%d", &n);
-//
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
-//	}
-//
-//	//PrintArray(num, n);
-//	int cnt = 0;
-//	int check = 0;
-//	for (int i = 0; i < n; ++i) {
-//		for (int j = check; j < n; ++j) {
-//			if (num[j] < 0) {
-//				num2[i] = num[j];
-//				check = j + 1;
-//				++cnt;
-//				break;
-//			}
-//		}
-//	}
-//	int check2 = 0;
-//	for (int i = cnt; i < n; ++i) {
-//		for (int j = check2; j < n; ++j) {
-//			if (num[j] > 0) {
-//				num2[i] = num[j];
-//				check2 = j + 1;
-//				break;
-//			}
-//		}
-//	}
-//
-//	PrintArray(num2, n);
-//
+//	int n1, n2, num1[100], num2[100], num3[200];
 //	
-//
-//	return 0;
-//}
-
-////34 버블정렬
-//#include <stdio.h>
-//
-//void Swap(int* a, int* b) {
-//	int temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
-//
-//void PrintArray(int arr[], int size) {
-//	for (int i = 0; i < size; ++i) {
-//		printf("%d ", arr[i]);
-//	}
-//	printf("\n");
-//}
-//
-//int main() {
-//	freopen("input.txt", "rt", stdin);
-//	int n;
-//	int num[100];
-//	scanf("%d", &n);
-//
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
+//	//첫 번째 배열 입력
+//	scanf("%d", &n1);
+//	for (int i = 0; i < n1; ++i) {
+//		scanf("%d", &num1[i]);
 //	}
 //
-//	PrintArray(num, n);
-//	int cnt = 0;
-//	for (int i = 0; i < n - 1; ++i) {
-//		for (int j = i + 1; j < n; ++j) {
-//			if (num[j] < 0) {
-//				Swap(&num[j], &num[i]);
-//				++cnt;
-//				break;
-//			}
+//	//두 번째 배열 입력 받기
+//	scanf("%d", &n2);
+//	for (int i = 0; i < n2; ++i) {
+//		scanf("%d", &num2[i]);
+//	}
+//	//두 배열 정렬하며 병합
+//	int p1 = 0, p2 = 0, p3 = 0;
+//	while (1) {
+//		if (num1[p1] < num2[p2]) {
+//			num3[p3] = num1[p1];
+//			++p1;
+//			++p3;
+//		}
+//		else {
+//			num3[p3] = num2[p2];
+//			++p2;
+//			++p3;
+//		}
+//		if (p1 == n1 || p2 == n2)
+//			break;
+//	}
+//
+//	if (p1 == n1) {
+//		for (int i = p2; i < n2; ++i) {
+//			num3[p3] = num2[i];
+//			++p3;
+//		}
+//	}
+//	else if (p2==n2){
+//		for (int i = p1; i < n1; ++i) {
+//			num3[p3] = num1[i];
+//			++p3;
 //		}
 //	}
 //
-//	PrintArray(num, n);
-//
-//	for (int i = 0; i < cnt - 1; ++i)
-//		for (int j = 0; j < cnt - i - 1; ++j) {
-//			if (num[j] < num[j + 1])
-//				Swap(&num[j], &num[j + 1]);
-//		}
-//
-//
-//	for (int i = 0; i < n - 1; ++i) {
-//		for (int j = cnt; j < n - i - 1; ++j) {
-//			if (num[j] > num[j + 1])
-//				Swap(&num[j], &num[j + 1]);
-//		}
-//	}
-//
-//	PrintArray(num, n);
-//
-//
-//
-//	return 0;
-//}
-
-
-////34 버블정렬
-//void Swap(int* a, int* b) {
-//	int temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
-//
-//#include <stdio.h>
-//int main() {
-//	int n;
-//	scanf("%d", &n);
-//	int num[100];
-//	for (int i = 0; i < n; ++i) {
-//		scanf("%d", &num[i]);
-//	}
-//
-//	for (int i = 0; i < n-1; ++i) {
-//		for (int j = 0; j < n-i-1; ++j) {
-//			if (num[j] > num[j + 1]) {
-//				Swap(&num[j], &num[j + 1]);
-//			}
-//
-//		}
+//	//출력하기
+//	for (int i = 0; i < n1 + n2; ++i) {
+//		printf("%d ", num3[i]);
 //	}
 //
 //
 //	return 0;
 //}
-
-////34 버블정렬
-//void Swap(int* a, int* b) {
-//	int temp = *a;
-//	*a = *b;
-//	*b = temp;
-//}
 //
-//#include <stdio.h>
-//int main() {
-//	int T;
-//	scanf("%d", &T);
-//	int num[100];
-//	for (int i = 0; i < T; ++i) {
-//		scanf("%d", &num[i]);
-//	}
-//	for (int i = T - 1; i > 0; --i) {
-//		for (int j = 0; j < i; ++j) {
-//			if (num[j] > num[j + 1]) {
-//				Swap(&num[j], &num[j + 1]);
-//			}
+//////39. 두 배열 합치기
+////#include<stdio.h>
+////int main() {
+////	int n,n2, num[200];
+////	scanf("%d", &n);
+////	//첫 번째 배열 입력
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	scanf("%d", &n2);
+////	//두 번째 배열 첫 배열다음 인덱스부터 입력받기
+////	for (int i = n; i < n + n2; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////	//선택정렬로 배열 정렬하기
+////	int j;
+////	for (int i = 1; i < n + n2; ++i) {
+////		int value = num[i];
+////		for (j = i - 1; j >= 0; --j) {
+////			if (num[j] > value)
+////				num[j + 1] = num[j];
+////			else {
+////				num[j + 1] = value;
+////				break;
+////			}
+////		}
+////		num[j + 1] = value;
+////
+////	}
+////
+////	for (int i = 0; i < n + n2; ++i) {
+////		printf("%d ", num[i]);
+////	}
+////
+////
+////	return 0;
+////}
 //
-//		}
-//	}
+//
+//////36. 삽입정렬
+////#include <stdio.h>
+////
+////void PrintArray(int arr[], int size) {
+////	for (int i = 0; i < size; ++i) {
+////		printf("%d ", arr[i]);
+////	}
+////	printf("\n");
+////}
+////
+////int main() {
+////	freopen("input.txt", "rt", stdin);
+////	int n;
+////	int num[100];
+////	scanf("%d", &n);
+////
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	PrintArray(num, n);
+////
+////	int value;
+////	int j;
+////	for (int i = 1; i < n; ++i) {
+////		value = num[i];
+////		for (j = i - 1; j >= 0; --j) {
+////			if (num[j] > value) {
+////				num[j + 1] = num[j];
+////			}
+////			else {
+////				break;
+////			}
+////		}
+////		num[j + 1] = value;
+////	}
+////	PrintArray(num, n);
+////
+////
+////	return 0;
+////}
+//
+//////35 Special Sort(Google Interview)
+////#include <stdio.h>
+////
+////void Swap(int* a, int* b) {
+////	int temp = *a;
+////	*a = *b;
+////	*b = temp;
+////}
+////
+////void PrintArray(int arr[], int size) {
+////	for (int i = 0; i < size; ++i) {
+////		printf("%d ", arr[i]);
+////	}
+////	printf("\n");
+////}
+////
+////int main() {
+////	//freopen("input.txt", "rt", stdin);
+////	int n;
+////	int num[100];
+////	int num2[100];
+////	scanf("%d", &n);
+////
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	//PrintArray(num, n);
+////
+////	for (int i = 0; i < n - 1; ++i){
+////		for (int j = 0; j < (n - 1) - i; ++j) {
+////			if (num[j] > 0 && num[j + 1] < 0)
+////				Swap(&num[j], &num[j + 1]);
+////		}
+////	}
+////
+////	PrintArray(num, n);
+////
+////	return 0;
+////}
+//
+//////35 Special Sort(Google Interview)
+////#include <stdio.h>
+////
+////void Swap(int* a, int* b) {
+////	int temp = *a;
+////	*a = *b;
+////	*b = temp;
+////}
+////
+////void PrintArray(int arr[], int size) {
+////	for (int i = 0; i < size; ++i) {
+////		printf("%d ", arr[i]);
+////	}
+////	printf("\n");
+////}
+////
+////int main() {
+////	//freopen("input.txt", "rt", stdin);
+////	int n;
+////	int num[100];
+////	int num2[100];
+////	scanf("%d", &n);
+////
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	//PrintArray(num, n);
+////	int cnt = 0;
+////	int check = 0;
+////	for (int i = 0; i < n; ++i) {
+////		for (int j = check; j < n; ++j) {
+////			if (num[j] < 0) {
+////				num2[i] = num[j];
+////				check = j + 1;
+////				++cnt;
+////				break;
+////			}
+////		}
+////	}
+////	int check2 = 0;
+////	for (int i = cnt; i < n; ++i) {
+////		for (int j = check2; j < n; ++j) {
+////			if (num[j] > 0) {
+////				num2[i] = num[j];
+////				check2 = j + 1;
+////				break;
+////			}
+////		}
+////	}
+////
+////	PrintArray(num2, n);
+////
+////	
+////
+////	return 0;
+////}
+//
+//////34 버블정렬
+////#include <stdio.h>
+////
+////void Swap(int* a, int* b) {
+////	int temp = *a;
+////	*a = *b;
+////	*b = temp;
+////}
+////
+////void PrintArray(int arr[], int size) {
+////	for (int i = 0; i < size; ++i) {
+////		printf("%d ", arr[i]);
+////	}
+////	printf("\n");
+////}
+////
+////int main() {
+////	freopen("input.txt", "rt", stdin);
+////	int n;
+////	int num[100];
+////	scanf("%d", &n);
+////
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	PrintArray(num, n);
+////	int cnt = 0;
+////	for (int i = 0; i < n - 1; ++i) {
+////		for (int j = i + 1; j < n; ++j) {
+////			if (num[j] < 0) {
+////				Swap(&num[j], &num[i]);
+////				++cnt;
+////				break;
+////			}
+////		}
+////	}
+////
+////	PrintArray(num, n);
+////
+////	for (int i = 0; i < cnt - 1; ++i)
+////		for (int j = 0; j < cnt - i - 1; ++j) {
+////			if (num[j] < num[j + 1])
+////				Swap(&num[j], &num[j + 1]);
+////		}
+////
+////
+////	for (int i = 0; i < n - 1; ++i) {
+////		for (int j = cnt; j < n - i - 1; ++j) {
+////			if (num[j] > num[j + 1])
+////				Swap(&num[j], &num[j + 1]);
+////		}
+////	}
+////
+////	PrintArray(num, n);
+////
+////
+////
+////	return 0;
+////}
 //
 //
-//	return 0;
-//}
+//////34 버블정렬
+////void Swap(int* a, int* b) {
+////	int temp = *a;
+////	*a = *b;
+////	*b = temp;
+////}
+////
+////#include <stdio.h>
+////int main() {
+////	int n;
+////	scanf("%d", &n);
+////	int num[100];
+////	for (int i = 0; i < n; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////
+////	for (int i = 0; i < n-1; ++i) {
+////		for (int j = 0; j < n-i-1; ++j) {
+////			if (num[j] > num[j + 1]) {
+////				Swap(&num[j], &num[j + 1]);
+////			}
+////
+////		}
+////	}
+////
+////
+////	return 0;
+////}
+//
+//////34 버블정렬
+////void Swap(int* a, int* b) {
+////	int temp = *a;
+////	*a = *b;
+////	*b = temp;
+////}
+////
+////#include <stdio.h>
+////int main() {
+////	int T;
+////	scanf("%d", &T);
+////	int num[100];
+////	for (int i = 0; i < T; ++i) {
+////		scanf("%d", &num[i]);
+////	}
+////	for (int i = T - 1; i > 0; --i) {
+////		for (int j = 0; j < i; ++j) {
+////			if (num[j] > num[j + 1]) {
+////				Swap(&num[j], &num[j + 1]);
+////			}
+////
+////		}
+////	}
+////
+////
+////	return 0;
+////}
 
 ////32. 3등 성적은?
 //
