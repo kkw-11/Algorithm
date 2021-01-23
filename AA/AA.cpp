@@ -6,15 +6,12 @@ void D(int x) {
 		D(x / 2);
 		printf("%d",x%2);
 	}
-
 }
-
 int main() {
 	int n;
 	scanf("%d",&n);
 
 	D(n);
-
 
 	return 0;
 }
@@ -41,7 +38,6 @@ int main() {
 //	for (int i = size - 1; i >= 0; --i) {
 //		printf("%d", digit[i]);
 //	}
-//
 //	return 0;
 //}
 
