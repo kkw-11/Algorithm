@@ -1,68 +1,147 @@
-//15. 소수의 개수
-bool isPrime(int x) {
-	if (x == 1) return 0;
-	bool prime = true;
-	for (int i = 2; i*i <= x; ++i) {
-		if (x % i == 0) {
-			prime = false;
+//아나그램
+#include <stdio.h>
+void _Sort(char list[], int left, int right) {
+	if (left <= right) {
+		int pivot = left;
+		int i = left + 1;
+		int j = right;
+		do {
+
+			while (list[pivot] > list[i])
+				++i;
+			while (list[pivot] < list[j])
+				--j;
+			if (i <= j) {
+				//swap
+				int temp = list[i];
+				list[i] = list[j];
+				list[j] = temp;
+		
+				++i;
+				--j;
+			}
+		} while (i <= j);
+
+		int temp = list[j];
+		list[j] = list[pivot];
+		list[pivot] = temp;
+
+		_Sort(list, left, j - 1);
+		_Sort(list, j + 1, right);
+
+
+	}
+}
+void Sort(char list[], int size) {
+	_Sort(list, 0, size - 1);
+}
+int main() {
+	//freopen("input.txt", "rt", stdin);
+	char ch1[100], ch2[200];
+	int size;
+
+	//문자입력받기
+	scanf("%s", ch1);
+	scanf("%s", ch2);
+
+	//마지막 null값으로 사이즈 구하기
+	int i = 0;
+	for (i = 0; ch1[i]; ++i) {
+	}
+
+	size = i;
+
+	//정렬
+	Sort(ch1, size);
+	Sort(ch2, size);
+
+
+	//인덱스별로 비교하기
+	//비교하다가 하나라도 다르면 NO 출력
+	int j;
+	for (j = 0; ch1[j]; ++j) {
+		if (ch1[j] != ch2[j]) {
+			printf("NO");
 			break;
 		}
 	}
+	
+	//i값이 null과 같으면 YES출력
 
-	return prime;
-}
+	if (j == size)
+		printf("YES");
 
-#include <stdio.h>
-#include <stdlib.h>
-int main() {
-	int n, cnt = 0;
-	scanf("%d", &n);
 
-	//1~n까지 소수 개수 구하기
-	for (int i = 2; i <= n; ++i) {
-		//i가 소수이면 1 증가
-		if (isPrime(i)) {
-			++cnt;
-		}
-	}
 
-	printf("%d", cnt);
 
 	return 0;
 }
 
-//15. 소수의 개수
-bool isPrime(int x) {
-	if (x == 1) return 0;
-	bool prime = true;
-	for (int i = 2; i < x; ++i) {
-		if (x % i == 0) {
-			prime = false;
-			break;
-		}
-	}
-
-	return prime;
-}
-
-#include <stdio.h>
-#include <stdlib.h>
-int main() {
-	int n, cnt = 0;
-	scanf("%d", &n);
-
-	//1~n까지 소수 개수 구하기
-	for (int i = 2; i <= n; ++i) {
-		//i가 소수이면 1 증가
-		if (isPrime(i)) {
-			++cnt;
-		}
-	}
-
-	printf("%d", cnt);
-
-	return 0;
-}
+////15. 소수의 개수
+//bool isPrime(int x) {
+//	if (x == 1) return 0;
+//	bool prime = true;
+//	for (int i = 2; i*i <= x; ++i) {
+//		if (x % i == 0) {
+//			prime = false;
+//			break;
+//		}
+//	}
+//
+//	return prime;
+//}
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	int n, cnt = 0;
+//	scanf("%d", &n);
+//
+//	//1~n까지 소수 개수 구하기
+//	for (int i = 2; i <= n; ++i) {
+//		//i가 소수이면 1 증가
+//		if (isPrime(i)) {
+//			++cnt;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//
+//	return 0;
+//}
+//
+////15. 소수의 개수
+//bool isPrime(int x) {
+//	if (x == 1) return 0;
+//	bool prime = true;
+//	for (int i = 2; i < x; ++i) {
+//		if (x % i == 0) {
+//			prime = false;
+//			break;
+//		}
+//	}
+//
+//	return prime;
+//}
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	int n, cnt = 0;
+//	scanf("%d", &n);
+//
+//	//1~n까지 소수 개수 구하기
+//	for (int i = 2; i <= n; ++i) {
+//		//i가 소수이면 1 증가
+//		if (isPrime(i)) {
+//			++cnt;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//
+//	return 0;
+//}
 
 
 ////15. 소수의 개수
