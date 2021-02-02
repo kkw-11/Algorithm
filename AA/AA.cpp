@@ -1,34 +1,129 @@
-////16.선생님퀴즈
-#include <stdio.h>
-#include <stdlib.h>
-int totalSum(int n) {
-	int sum = 0;
-	for (int i = 1; i <= n; ++i) {
-		sum += i;
-	}
-	return sum;
-}
-
+//18. 층간소음
+#include<stdio.h>
 int main() {
-//	freopen("input.txt", "rt", stdin);
-	int n, res;
-	scanf("%d", &n);
-	int* p = (int*)malloc(sizeof(int) * 2 * n);
+	//freopen("input.txt", "rt", stdin);
+	
+	int n, m, maxSc = -1, sc = 0;
+	int num[100] = { 0 };
+	
+	scanf("%d %d", &n, &m);
 
-	for (int i = 0; i < 2 * n; ++i) {
-		scanf("%d", &p[i]);
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &num[i]);
+		
+		//기준 값보다 크면 초 값 증가
+		if (num[i] > m)
+			++sc;
+		else {
+			sc = 0;
+		}
+
+		if (maxSc < sc) {
+			maxSc = sc;
+		}
 	}
 
-	for (int i = 0; i < (2 * n - 1); i += 2) {
-		res = totalSum(p[i]);
-		if (p[i + 1] == res) printf("YES\n");
-		else printf("NO\n");
-	}
+	//한번도 울리지 않았다면 sc가 증가 하지 않고 sc =0값이 maxSc에도 저장 되었을것
+	if (maxSc == 0) printf("%d", -1);
+	else printf("%d", maxSc);
 
-
-	free(p);
 	return 0;
+
 }
+
+
+////18. 층간소음
+//#include<stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n, m, maxSc = 0, sc = 0;
+//	int num[100] = {0};
+//	scanf("%d %d", &n, &m);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//	
+//
+//	for (int i = 0; i < n; ++i) {
+//		//기준 값보다 크면 초 값 증가
+//		if (num[i] > m) 
+//			++sc;
+//		else {
+//			//초기화 전에 sc값 최대sc랑 비교하고 저장
+//			if (maxSc < sc)
+//				maxSc = sc;
+//			sc = 0;
+//		}
+//		//else에서 sc 초기화 전에만 max 저장하면 마지막 숫자까지 연속적일 경우 max값 저장 비교할일 없기 때문
+//		if (maxSc < sc)
+//			maxSc = sc;
+//	}
+//
+//	printf("%d", maxSc);
+//	return 0;
+//
+//}
+
+//////17.선생님퀴즈
+//#include <stdio.h>
+//int totalSum(int n) {
+//	int sum = 0;
+//	for (int i = 1; i <= n; ++i) {
+//		sum += i;
+//	}
+//	return sum;
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n, sum = 0, num, ans;
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d %d", &num, &ans);
+//
+//		sum = totalSum(num);
+//
+//		if (sum == ans)printf("YES\n");
+//		else printf("NO\n");
+//	}
+//
+//
+//	return 0;
+//}
+//
+//////17.선생님퀴즈
+//#include <stdio.h>
+//#include <stdlib.h>
+//int totalSum(int n) {
+//	int sum = 0;
+//	for (int i = 1; i <= n; ++i) {
+//		sum += i;
+//	}
+//	return sum;
+//}
+//
+//int main() {
+////	freopen("input.txt", "rt", stdin);
+//	int n, res;
+//	scanf("%d", &n);
+//	int* p = (int*)malloc(sizeof(int) * 2 * n);
+//
+//	for (int i = 0; i < 2 * n; ++i) {
+//		scanf("%d", &p[i]);
+//	}
+//
+//	for (int i = 0; i < (2 * n - 1); i += 2) {
+//		res = totalSum(p[i]);
+//		if (p[i + 1] == res) printf("YES\n");
+//		else printf("NO\n");
+//	}
+//
+//
+//	free(p);
+//	return 0;
+//}
 
 
 ////16.아나그램
