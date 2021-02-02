@@ -1,41 +1,32 @@
+////16.선생님퀴즈
 #include <stdio.h>
-int a[53], b[53];
+#include <stdlib.h>
+int totalSum(int n) {
+	int sum = 0;
+	for (int i = 1; i <= n; ++i) {
+		sum += i;
+	}
+	return sum;
+}
+
 int main() {
-	char ch1[200], ch2[200];
-	int asch1 = 0;
-	int flag = 0;
-	scanf("%s", &ch1);
-	scanf("%s", &ch2);
+//	freopen("input.txt", "rt", stdin);
+	int n, res;
+	scanf("%d", &n);
+	int* p = (int*)malloc(sizeof(int) * 2 * n);
 
-	for (int i = 0; ch1[i]; ++i) {
-		asch1 = 0;
-		//첫번째 문자별 개수확인
-		//소문자, 대문자 구분하여 해싱법으로 
-		if(ch1[i]>=65 && ch1[i]<=90)
-			++a[ch1[i] - 64];
-
-		if(ch1[i]>=97 && ch1[i]<=122)
-			++a[ch1[i] - 70];
-
-		//두번째 문자별 개수 확인
-		if (ch2[i] >= 65 && ch2[i] <= 90)
-			++b[ch2[i] - 64];
-
-		if (ch2[i] >= 97 && ch2[i] <= 122)
-			++b[ch2[i] - 70];
+	for (int i = 0; i < 2 * n; ++i) {
+		scanf("%d", &p[i]);
 	}
 
-	for (int j = 1; j <= 52; ++j) {
-		flag = 0;
-		if (a[j] != b[j]) {
-			flag = 1;
-			break;
-		}
+	for (int i = 0; i < (2 * n - 1); i += 2) {
+		res = totalSum(p[i]);
+		if (p[i + 1] == res) printf("YES\n");
+		else printf("NO\n");
 	}
 
-	if (flag == 1) printf("NO");
-	else printf("YES");
 
+	free(p);
 	return 0;
 }
 
