@@ -1,3 +1,80 @@
+//20. 가위 바위 보
+#include <stdio.h>
+int main() {
+	//freopen("input.txt", "rt", stdin);
+	int n;
+	int a[100], b[100];
+	scanf("%d", &n);
+	//a입력
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &a[i]);
+	}
+	//b입력
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &b[i]);
+	}
+
+	for (int i = 0; i < n; ++i) {
+		if (a[i] == b[i]) printf("D\n");
+		else {
+			if (a[i] == 1) {
+				if (b[i] == 2)printf("B\n");
+				if (b[i] == 3)printf("A\n");
+			}
+			else if (a[i] == 2) {
+				if (b[i] == 1)printf("A\n");
+				if (b[i] == 3)printf("B\n");
+			}
+			else {
+				if (b[i] == 1) printf("B\n");
+				if (b[i] == 2)printf("A\n");
+			}
+		}
+
+	}
+
+	return 0;
+}
+
+////20. 가위 바위 보
+//#include <stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n;
+//	int a[100], b[100];
+//	scanf("%d", &n);
+//	//a입력
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//	//b입력
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &b[i]);
+//	}
+//
+//	for (int i = 0; i < n; ++i) {
+//		//예외 처리 가위바위보에서 숫자 큰놈이 이긴다에서 가위와 보에서 예외가 발생 예외만 먼저 적용
+//		if ((a[i] == 1 && b[i] == 3) || (a[i] == 3 && b[i] == 1))
+//		{
+//			if (a[i] < b[i])
+//				printf("A\n");
+//			else if (a[i] > b[i])
+//				printf("B\n");
+//
+//		}			
+//		else{
+//		if (a[i] > b[i])
+//			printf("A\n");
+//		else if (a[i] < b[i])
+//			printf("B\n");
+//		else
+//			printf("D\n");
+//		}
+//	}
+//
+//	return 0;
+//}
+
 ////19. 분노유발자
 //#include<stdio.h>
 //int main() {
