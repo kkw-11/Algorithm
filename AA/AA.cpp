@@ -1,96 +1,125 @@
-//21. 카드 게임
+//22. 온도의 최대값
 #include <stdio.h>
 int main() {
-	//freopen("input.txt", "rt", stdin);
-	int cardA[10], cardB[10], res[10];
-	int scoreA = 0, scoreB = 0;
-	int lw = 0;
-	for (int i = 0; i < 10; ++i) {
-		scanf("%d", &cardA[i]);
-	}
-	for (int i = 0; i < 10; ++i) {
-		scanf("%d", &cardB[i]);
+//	freopen("input.txt", "rt", stdin);
+
+	int N, K;
+	int temper[100000];
+	int sum, max = -21400000;
+	scanf("%d %d", &N, &K);
+
+	for (int i = 0; i < N; ++i) {
+		scanf("%d", &temper[i]);
 	}
 
-	for (int i = 0; i < 10; ++i) {
-		if (cardA[i] > cardB[i]) {
-			lw = 'A';
-			scoreA += 3;
+	for (int i = 0; i <= N - K; ++i) {
+		sum = 0;
+		//i일부터 K일까지 온도합 구하기
+		for (int j = i; j < K + i; ++j) {
+			sum += temper[j];
 		}
-
-		else if (cardA[i] < cardB[i]) {
-			lw = 'B';
-			scoreB += 3;
-		}
-		else {
-			scoreA += 1;
-			scoreB += 1;
-		}
+		if (sum > max)
+			max = sum;
 	}
 
-	printf("%d %d\n", scoreA, scoreB);
-	if (scoreA == scoreB) {
-		if (lw == 0)
-			printf("D\n");
-		else
-			printf("%c", lw);
-
-	}
-	else if (scoreA > scoreB) printf("A\n");
-	else printf("B\n");
-
+	printf("%d", max);
 
 	return 0;
 }
 
-//21. 카드 게임
-#include <stdio.h>
-int main() {
-	//freopen("input.txt", "rt", stdin);
-	int cardA[10], cardB[10], res[10];
-	int scoreA = 0, scoreB = 0;
-
-	for (int i= 0; i < 10; ++i) {
-		scanf("%d", &cardA[i]);
-	}
-	for (int i = 0; i < 10; ++i) {
-		scanf("%d", &cardB[i]);
-	}
-
-	for (int i = 0; i < 10; ++i) {
-		if (cardA[i] > cardB[i]) {
-			res[i] = 'A';
-			scoreA += 3;
-		}
-		else if (cardA[i] < cardB[i]) {
-			res[i] = 'B';
-			scoreB += 3;
-		}			
-		else {
-			res[i] = 'D';
-			scoreA += 1;
-			scoreB += 1;
-		}
-	}
-
-	printf("%d %d\n", scoreA, scoreB);
-	if (scoreA == scoreB) {
-		int j = 0;
-		for (j = 9; j >= 0; --j) {
-			if (res[j] == 'A' || res[j] == 'B') {
-				printf("%c", res[j]);
-				break;
-			}
-		}
-		if (j == -1)
-			printf("D\n");
-
-	}
-	else if (scoreA > scoreB) printf("A\n");
-	else printf("B\n");
-
-	return 0;
-}
+////21. 카드 게임
+//#include <stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int cardA[10], cardB[10], res[10];
+//	int scoreA = 0, scoreB = 0;
+//	int lw = 0;
+//	for (int i = 0; i < 10; ++i) {
+//		scanf("%d", &cardA[i]);
+//	}
+//	for (int i = 0; i < 10; ++i) {
+//		scanf("%d", &cardB[i]);
+//	}
+//
+//	for (int i = 0; i < 10; ++i) {
+//		if (cardA[i] > cardB[i]) {
+//			lw = 'A';
+//			scoreA += 3;
+//		}
+//
+//		else if (cardA[i] < cardB[i]) {
+//			lw = 'B';
+//			scoreB += 3;
+//		}
+//		else {
+//			scoreA += 1;
+//			scoreB += 1;
+//		}
+//	}
+//
+//	printf("%d %d\n", scoreA, scoreB);
+//	if (scoreA == scoreB) {
+//		if (lw == 0)
+//			printf("D\n");
+//		else
+//			printf("%c", lw);
+//
+//	}
+//	else if (scoreA > scoreB) printf("A\n");
+//	else printf("B\n");
+//
+//
+//	return 0;
+//}
+//
+////21. 카드 게임
+//#include <stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int cardA[10], cardB[10], res[10];
+//	int scoreA = 0, scoreB = 0;
+//
+//	for (int i= 0; i < 10; ++i) {
+//		scanf("%d", &cardA[i]);
+//	}
+//	for (int i = 0; i < 10; ++i) {
+//		scanf("%d", &cardB[i]);
+//	}
+//
+//	for (int i = 0; i < 10; ++i) {
+//		if (cardA[i] > cardB[i]) {
+//			res[i] = 'A';
+//			scoreA += 3;
+//		}
+//		else if (cardA[i] < cardB[i]) {
+//			res[i] = 'B';
+//			scoreB += 3;
+//		}			
+//		else {
+//			res[i] = 'D';
+//			scoreA += 1;
+//			scoreB += 1;
+//		}
+//	}
+//
+//	printf("%d %d\n", scoreA, scoreB);
+//	if (scoreA == scoreB) {
+//		int j = 0;
+//		for (j = 9; j >= 0; --j) {
+//			if (res[j] == 'A' || res[j] == 'B') {
+//				printf("%c", res[j]);
+//				break;
+//			}
+//		}
+//		if (j == -1)
+//			printf("D\n");
+//
+//	}
+//	else if (scoreA > scoreB) printf("A\n");
+//	else printf("B\n");
+//
+//	return 0;
+//}
 
 ////20. 가위 바위 보
 //#include <stdio.h>
