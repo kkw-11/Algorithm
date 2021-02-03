@@ -5,27 +5,56 @@ int main() {
 
 	int N, K;
 	int temper[100000];
-	int sum, max = -21400000;
+	int sum = 0, max = -21400000;
 	scanf("%d %d", &N, &K);
 
 	for (int i = 0; i < N; ++i) {
 		scanf("%d", &temper[i]);
+		//온도값 입력 받으면서 첫번째 구간의 합 먼저 구하기
+		if (i < K)
+			sum += temper[i];
 	}
 
-	for (int i = 0; i <= N - K; ++i) {
-		sum = 0;
-		//i일부터 K일까지 온도합 구하기
-		for (int j = i; j < K + i; ++j) {
-			sum += temper[j];
-		}
+	max = sum;
+	for (int i = 0; i < N - K; ++i) {
+		//구간에서 하나 추가된 값과 하나전값 빼서 구간합 구하기
+		sum += (temper[K + i] - temper[i]);
 		if (sum > max)
 			max = sum;
 	}
-
 	printf("%d", max);
 
 	return 0;
 }
+
+////22. 온도의 최대값
+//#include <stdio.h>
+//int main() {
+//	//	freopen("input.txt", "rt", stdin);
+//
+//	int N, K;
+//	int temper[100000];
+//	int sum, max = -21400000;
+//	scanf("%d %d", &N, &K);
+//
+//	for (int i = 0; i < N; ++i) {
+//		scanf("%d", &temper[i]);
+//	}
+//
+//	for (int i = 0; i <= N - K; ++i) {
+//		sum = 0;
+//		//i일부터 K일까지 온도합 구하기
+//		for (int j = i; j < K + i; ++j) {
+//			sum += temper[j];
+//		}
+//		if (sum > max)
+//			max = sum;
+//	}
+//
+//	printf("%d", max);
+//
+//	return 0;
+//}
 
 ////21. 카드 게임
 //#include <stdio.h>
