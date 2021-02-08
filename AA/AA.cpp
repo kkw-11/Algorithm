@@ -1,3 +1,108 @@
+////25. 석차 구하기
+//#include <stdio.h>
+//#include <stdlib.h>
+//void Swap(int* pa, int* pb) {
+//	int temp = *pa;
+//	*pa = *pb;
+//	*pb = temp;
+//}
+//void Print(int list[], int size) {
+//	for (int i = 0; i < size; ++i) {
+//		printf("%5d", list[i]);
+//	}
+//	printf("\n");
+//}
+//void _Sort(int list[], int left, int right) {
+//	Print(list, 5);
+//
+//	if (left <= right) {
+//		int pivot = left;
+//		int i = left + 1;
+//		int j = right;
+//
+//		do {
+//			if (list[pivot] >= list[i])
+//				++i;
+//			if (list[pivot] <= list[j])
+//				--j;
+//
+//			if (i <= j) {
+//				Swap(&list[i], &list[j]);
+//			}
+//
+//		} while (i <= j);
+//		Print(list, 5);
+//
+//		Swap(&list[pivot], &list[j]);
+//		_Sort(list, left, j - 1);
+//		_Sort(list, j + 1, right);
+//
+//	}
+//
+//}
+//void Sort(int list[], int size) {
+//	_Sort(list, 0, size - 1);
+//}
+//
+//
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int n;
+//	scanf("%d", &n);
+//	int* p1 = (int*)malloc(sizeof(int) * n);
+//	int* p2 = (int*)malloc(sizeof(int) * n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &p1[i]);
+//		p2[i] = p1[i];
+//	}
+//	Print(p2, n);
+//	//정렬
+//	Sort(p2, n);
+//	Print(p2, n);
+//
+//
+//	//p1 첫인덱스부터 정렬된 p2의 값을 찾아서 등수 출력
+//
+//	return 0;
+//}
+
+
+////24. Jolly Jumpers
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n, pre, now, sub, flag = 0;
+//	int subarray[100] = { 0 };
+//	int j;
+//
+//	scanf("%d", &n);
+//	scanf("%d", &pre);
+//
+//	for (int i = 1; i < n; ++i) {
+//		scanf("%d", &now);
+//		sub = now - pre;
+//		if (sub < 0)
+//			sub = -sub;
+//
+//		if (sub > 0 && sub < n && subarray[sub] == 0)
+//			subarray[sub] = sub;
+//		else {
+//			printf("NO\n");
+//			return 0;
+//		}
+//	
+//		
+//		pre = now;
+//	}
+//
+//	printf("YES\n");
+//
+//	return 0;
+//
+//}
+
 ////24. Jolly Jumpers
 //#include <stdio.h>
 //#include <stdlib.h>
