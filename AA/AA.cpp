@@ -1,3 +1,22 @@
+//29.3의 개수는?(small)
+#include <stdio.h>
+int main() {
+	//freopen("input.txt", "rt", stdin);
+	int n, temp, digit = 0;
+	scanf("%d", &n);
+	temp = n;
+	
+	//자리수 구하기
+	while (temp != 0) {
+		temp /= 10;
+		++digit;
+	}
+
+	printf("%d", digit);
+
+	return 0;
+}
+
 ////28. N!에서 0의 개수
 //#include <stdio.h>
 //#include <stdlib.h>
