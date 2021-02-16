@@ -2,20 +2,63 @@
 #include <stdio.h>
 int main() {
 	//freopen("input.txt", "rt", stdin);
-	int n, temp, digit = 0;
+	int n, temp, cnt = 0;
 	scanf("%d", &n);
-	temp = n;
-	
-	//자리수 구하기
-	while (temp != 0) {
-		temp /= 10;
-		++digit;
-	}
 
-	printf("%d", digit);
+	for (int i = 1; i <= n; ++i) {
+		temp = i;
+		while (temp != 0) {
+			if (temp % 10 == 3) {
+				++cnt;
+			}
+			temp /= 10;
+		}
+
+	}
+	printf("%d", cnt);
+	////자리수 구하기
+	//while (temp != 0) {
+	//	temp /= 10;
+	//	++digit;
+	//}
 
 	return 0;
+
 }
+
+
+
+////28. N!에서 0의 개수
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n, temp, cnt1 = 0, cnt2 = 0;
+//	scanf("%d", &n);
+//
+//	//2부터 n까지 소수들로 계속 나누어 보기
+//	for (int i = 2; i <= n; ++i) {
+//		temp = i;
+//		//i가 증가할때마다 나누는 값 2로 초기화해서 다시 나누기
+//		//2로 계속 나누어 지지 않을 때
+//		int j = 2;
+//		while (temp != 1) {
+//			if (temp % j == 0) {
+//				if (j == 2) ++cnt1;
+//				if (j == 5) ++cnt2;
+//				temp /= j;
+//			}
+//			else
+//				++j;
+//		}
+//	}
+//	if (cnt1 < cnt2)
+//		printf("%d", cnt1);
+//	else
+//		printf("%d", cnt2);
+//
+//
+//}
 
 ////28. N!에서 0의 개수
 //#include <stdio.h>
