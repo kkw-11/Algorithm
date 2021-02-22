@@ -101,7 +101,6 @@ int main() {
 			cntTotal += cntThree;
 			digitStartnum *= 10;
 		}
-
 		for (i = digitStartnum; i <= n; ++i) {
 			temp = i;
 			while (temp > 0) {
@@ -109,7 +108,6 @@ int main() {
 					++cntTotal;
 				}
 				temp /= 10;
-
 			}
 		}
 	}
