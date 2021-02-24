@@ -80,72 +80,98 @@
 //	return 0;
 //}
 
-//30. 3의 개수는?(large)
+////30. 3의 개수는?(large)
+//#include <stdio.h>
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int n, cntThree = 0, cntTotal = 0, digit = 0, i, temp = 1, digitStartnum;
+//	scanf("%d", &n);
+//	temp = n;
+//	//자리수 구하기
+//	while (temp > 0) {
+//		++digit;
+//		temp /= 10;
+//	}
+//
+//	digitStartnum = 1;
+//	if (n >= 10) {
+//		//구한 자리수 아래까지는 규칙대로 3 구하기
+//		for (i = 1; i < digit; ++i) {
+//			if (i < 3) {
+//				cntThree = cntThree * 9 + digitStartnum;
+//				cntTotal += cntThree;
+//				digitStartnum *= 10;
+//			}
+//			else {
+//				cntThree = 2 * (digitStartnum / 10);
+//				cntThree = cntThree * 9 + digitStartnum;
+//				cntTotal += cntThree;
+//				digitStartnum *= 10;
+//			}
+//		}
+//
+//		for (i = digitStartnum; i <= n; ++i) {
+//			temp = i;
+//			while (temp > 0) {
+//				if (temp % 10 == 3) {
+//					++cntTotal;
+//				}
+//				temp /= 10;
+//			}
+//		}
+//	}
+//	else if (n < 10 && n >= 3) {
+//		cntTotal = 1;
+//	}
+//
+//
+//
+//
+//	printf("%d", cntTotal);
+//
+//	return 0;
+//}
+
+
+//29.3의 개수는?(small)
 #include <stdio.h>
 int main() {
 	freopen("input.txt", "rt", stdin);
-	int n, cntThree = 0, cntTotal = 0, digit = 0, i, temp = 1, digitStartnum;
+	int n, temp, cnt = 0;
 	scanf("%d", &n);
-	temp = n;
-	//자리수 구하기
-	while (temp > 0) {
-		++digit;
-		temp /= 10;
-	}
+	int temp2 = 10;
 
-	digitStartnum = 1;
-	if (n >= 10) {
-		//구한 자리수 아래까지는 규칙대로 3 구하기
-		for (i = 1; i < digit; ++i) {
-			cntThree = cntThree * 10 + digitStartnum;
-			cntTotal += cntThree;
-			digitStartnum *= 10;
+	for (int i = 1; i <= n; ++i) {
+		temp = i;
+		while (temp > 0) {
+			if (temp % 10 == 3) {
+				++cnt;
+			}
+
+			temp /= 10;
 		}
-		for (i = digitStartnum; i <= n; ++i) {
-			temp = i;
-			while (temp > 0) {
-				if (temp % 10 == 3) {
-					++cntTotal;
-				}
-				temp /= 10;
+		if (i == temp2) {
+			printf("number:%d->%d\n", i, cnt);
+			temp2 *= 10;
+		}
+		/*if (i <= 10000) {
+			if (i == temp2) {
+				printf("number:%d->%d\n", i, cnt);
+				temp2 *= 10;
 			}
 		}
-	}
-	else if (n < 10 && n >= 3) {
-		cntTotal = 1;
-	}
+		else {
+			if(i % 10000 ==0)
+				printf("number:%d->%d\n", i, cnt);
 
-	printf("%d", cntTotal);
+		}*/
 
+	}
+	printf("%d", cnt);
 	return 0;
+
+
 }
-
-
-////29.3의 개수는?(small)
-//#include <stdio.h>
-//int main() {
-//	//freopen("input.txt", "rt", stdin);
-//	int n, temp, cnt = 0;
-//	scanf("%d", &n);
-//
-//	for (int i = 1; i <= n; ++i) {
-//		temp = i;
-//		while (temp > 0) {
-//			if (temp % 10 == 3) {
-//				++cnt;
-//			}
-//			
-//				temp /= 10;
-//		}
-//		if (i % 10 == 0) {
-//			printf("number:%d->%d\n", i, cnt);
-//		}
-//
-//	}
-//	printf("%d", cnt);
-//	return 0;
-//
-//}
 
 
 
