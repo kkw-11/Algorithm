@@ -30,40 +30,40 @@
 //}
 
 
-//41.연속된 자연수의 합
-#include<stdio.h>
-void seqPrint(int left, int right) {
-	for (int k = left; k < right; ++k) {
-		printf("%d + ", k);
-	}
-	printf("%d = ", right);
-}
-int main() {
-	int N, sum = 0, cnt = 0;
-	scanf("%d", &N);
-
-	//N-1부터 연속된 자연수를 더해서 N이 되는 수를 찾는다.
-	//찾았을 때 카운트 개수를 증가시키고
-	//연속된 자연수 개수를 출력시킨다.
-	for (int i = N - 1; i >= 1; --i) {
-		sum = 0;
-		for (int j = i; j >= 1; --j) {
-			sum += j;
-			if (sum == N) {
-				++cnt;
-
-				seqPrint(j, i);
-				printf("%d\n", N);
-
-			}
-			else if (sum > N) break;
-		}
-	}
-
-	printf("%d", cnt);
-
-	return 0;
-}
+////41.연속된 자연수의 합
+//#include<stdio.h>
+//void seqPrint(int left, int right) {
+//	for (int k = left; k < right; ++k) {
+//		printf("%d + ", k);
+//	}
+//	printf("%d = ", right);
+//}
+//int main() {
+//	int N, sum = 0, cnt = 0;
+//	scanf("%d", &N);
+//
+//	//N-1부터 연속된 자연수를 더해서 N이 되는 수를 찾는다.
+//	//찾았을 때 카운트 개수를 증가시키고
+//	//연속된 자연수 개수를 출력시킨다.
+//	for (int i = N - 1; i >= 1; --i) {
+//		sum = 0;
+//		for (int j = i; j >= 1; --j) {
+//			sum += j;
+//			if (sum == N) {
+//				++cnt;
+//
+//				seqPrint(j, i);
+//				printf("%d\n", N);
+//
+//			}
+//			else if (sum > N) break;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//
+//	return 0;
+//}
 
 ////41.연속된 자연수의 합
 //#include<stdio.h>
@@ -95,7 +95,218 @@ int main() {
 //
 //	return 0;
 //}
+//
+//
+////40.교집합(투포인터 알고리즘)
+//#include <stdio.h>
+//void swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//void sort(int arr[], int size) {
+//	for (int i = size; i > 1; --i) {
+//		int j;
+//		for (j = 0; j < i - 1; ++j) {
+//			if (arr[j] > arr[j + 1]) {
+//				swap(&arr[j], &arr[j + 1]);
+//			}
+//		}
+//	}
+//}
+//int main() {
+////	freopen("input.txt", "rt", stdin);
+//	int n, m;
+//	int a[30000], b[30000];
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//	sort(a, n);
+//
+//	scanf("%d", &m);
+//
+//	for (int i = 0; i < m; ++i) {
+//		scanf("%d", &b[i]);
+//	}
+//
+//	sort(b, m);
+//
+//	int i = 0, j = 0;
+//	while (i < n && j < m) {
+//		if (a[i] < b[j])
+//			++i;
+//		else if (a[i] > b[j])
+//			++j;
+//		else {
+//			printf("%d ", a[i]);
+//			++i;
+//			++j;
+//		}
+//	}
+//
+//	return 0;
+//}
 
+
+//40.교집합(투포인터 알고리즘)
+#include <stdio.h>
+void swap(int* a, int* b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+void sort(int arr[], int size) {
+	for (int i = size; i > 1; --i) {
+		int j;
+		for (j = 0; j < i - 1; ++j) {
+			if (arr[j] > arr[j + 1]) {
+				swap(&arr[j], &arr[j + 1]);
+			}
+		}
+	}
+}
+int main() {
+	int n, m;
+	int a[30000], b, c[30000];
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; ++i) {
+		scanf("%d", &a[i]);
+	}
+	scanf("%d", &m);
+
+	//b값 받으면서 a랑 중복값 찾기
+	int k = 0;
+	for (int i = 0; i < m; ++i) {
+		scanf("%d", &b);
+		for (int j = 0; j < n; ++j) {
+			if (b == a[j]) {
+				c[k++] = b;
+				break;
+			}
+
+		}
+	}
+
+	//c 내림차순 정렬하면서 출력
+	for (int i = k; i > 1; --i) {
+		int j;
+		for (j = 0; j < i - 1; ++j) {
+			if (c[j] < c[j + 1]) {
+				swap(&c[j], &c[j + 1]);
+			}
+		}
+		printf("%d ", c[j]);
+	}
+	printf("%d", c[0]);
+
+	/*for (int i = 0; i < k; ++i) {
+		printf("%d ", c[i]);
+	}*/
+
+
+	return 0;
+}
+//
+////40.교집합(투포인터 알고리즘)
+//#include <stdio.h>
+//void swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//int main() {
+//	int n, m;
+//	int a[30000], b, c[30000];
+//	scanf("%d", &n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//	scanf("%d", &m);
+//
+//	//b값 받으면서 a랑 중복값 찾기
+//	int k = 0;
+//	for (int i = 0; i < m; ++i) {
+//		scanf("%d", &b);
+//		for (int j = 0; j < n; ++j) {
+//			if (b == a[j]){
+//				c[k++] = b;
+//				break;
+//			}
+//
+//		}
+//	}
+//
+//	//c 내림차순 정렬하면서 출력
+//	for (int i = k; i > 1; --i) {
+//		int j;
+//		for (j = 0; j < i - 1; ++j) {
+//			if (c[j] <	c[j + 1]) {
+//				swap(&c[j], &c[j + 1]);
+//			}
+//		}
+//		printf("%d ", c[j]);
+//	}
+//	printf("%d", c[0]);
+//
+//	/*for (int i = 0; i < k; ++i) {
+//		printf("%d ", c[i]);
+//	}*/
+//
+//
+//	return 0;
+//}
+//
+
+////39. 두 배열 합치기
+//#include<stdio.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int N, M;
+//	int a[100] = { 0 }, b[100] = { 0 }, c[200];
+//	scanf("%d", &N);
+//
+//	for (int i = 0; i < N; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//
+//	scanf("%d", &M);
+//
+//	for (int i = 0; i < M; ++i) {
+//		scanf("%d", &b[i]);
+//	}
+//
+//	int i = 0, j = 0, k = 0;
+//
+//	while (i < N && j < M) {
+//
+//		if (a[i] <= b[j])
+//			c[k++] = a[i++];
+//		else
+//			c[k++] = b[j++];
+//
+//	}
+//	//i>=N Or j>=M 이면 위의 조건문을 빠져나간다.
+//	//이때 j<M이면 b배열의 남은 값을 c에 넣고
+//	//j<N이면 a배열의 남은 값을 c에 넣는다.
+//
+//	//while문이 순서대로 2개 존재하지만 두개의 while문은 모두 실행되지 않는다.
+//	while (i >= N && j < M) {
+//		c[k++] = b[j++];
+//	}
+//
+//	while (i < N && j >= M) {
+//		c[k++] = a[i++];
+//	}
+//	for (int i = 0; i < N + M; ++i) {
+//		printf("%d ",c[i]);
+//	}
+//
+//}
 
 
 ////31. 탄화수소 질량 
