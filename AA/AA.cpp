@@ -1,3 +1,31 @@
+//47.봉우리(2차원 배열 탐색)
+#include<stdio.h>
+int map[51][51];
+int main() {
+	//freopen("input.txt", "rt", stdin);
+
+	int n;
+	int cnt = 0;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
+			scanf("%d", &map[i][j]);
+		}
+	}
+
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
+			if ((map[i][j] > map[i - 1][j]) && (map[i][j] > map[i + 1][j]) && (map[i][j] > map[i][j - 1]) && (map[i][j] > map[i][j + 1]))
+				++cnt;
+		}
+	}
+
+	printf("%d", cnt);
+
+
+	return 0;
+}
+
 ////41.연속된 자연수의 합
 //#include<stdio.h>
 //int main() {
@@ -136,63 +164,63 @@
 //	return 0;
 //}
 
-
-//40.교집합(투포인터 알고리즘)
-#include <stdio.h>
-#include <stdlib.h>
-void swap(int* a, int* b) {
-	int temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-void sort(int arr[], int size) {
-	for (int i = size; i > 1; --i) {
-		int j;
-		for (j = 0; j < i - 1; ++j) {
-			if (arr[j] > arr[j + 1]) {
-				swap(&arr[j], &arr[j + 1]);
-			}
-		}
-	}
-}
-
-int main() {
-	//freopen("input.txt", "rt", stdin);
-	int n, m;
-	int* a, *b;
-	scanf("%d", &n);
-	a = (int*)malloc(sizeof(int) * n);
-
-	for (int i = 0; i < n; ++i) {
-		scanf("%d", &a[i]);
-	}
-	sort(a, n);
-
-	scanf("%d", &m);
-
-	b = (int*)malloc(sizeof(int) * m);
-	for (int i = 0; i < m; ++i) {
-		scanf("%d", &b[i]);
-	}
-
-	sort(b, m);
-
-	int i = 0, j = 0;
-	while (i < n && j < m) {
-		if (a[i] < b[j])
-			++i;
-		else if (a[i] > b[j])
-			++j;
-		else {
-			printf("%d ", a[i]);
-			++i;
-			++j;
-		}
-	}
-
-	return 0;
-}
+//
+////40.교집합(투포인터 알고리즘)
+//#include <stdio.h>
+//#include <stdlib.h>
+//void swap(int* a, int* b) {
+//	int temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//void sort(int arr[], int size) {
+//	for (int i = size; i > 1; --i) {
+//		int j;
+//		for (j = 0; j < i - 1; ++j) {
+//			if (arr[j] > arr[j + 1]) {
+//				swap(&arr[j], &arr[j + 1]);
+//			}
+//		}
+//	}
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n, m;
+//	int* a, *b;
+//	scanf("%d", &n);
+//	a = (int*)malloc(sizeof(int) * n);
+//
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &a[i]);
+//	}
+//	sort(a, n);
+//
+//	scanf("%d", &m);
+//
+//	b = (int*)malloc(sizeof(int) * m);
+//	for (int i = 0; i < m; ++i) {
+//		scanf("%d", &b[i]);
+//	}
+//
+//	sort(b, m);
+//
+//	int i = 0, j = 0;
+//	while (i < n && j < m) {
+//		if (a[i] < b[j])
+//			++i;
+//		else if (a[i] > b[j])
+//			++j;
+//		else {
+//			printf("%d ", a[i]);
+//			++i;
+//			++j;
+//		}
+//	}
+//
+//	return 0;
+//}
 ////40.교집합(투포인터 알고리즘)
 //#include <stdio.h>
 //void swap(int* a, int* b) {
