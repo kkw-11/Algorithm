@@ -1,70 +1,202 @@
-//47.봉우리(2차원 배열 탐색)
-#include<stdio.h>
-//전역 변수로 선언하면 자동으로 초기값 0 
-int map[52][52];
-int dx[] = { 0,0,-1,1 };
-int dy[] = { -1,1,0,0 };
+//50. 영지(territory) 선택 : (small)
+#include <stdio.h>
 int main() {
 	//freopen("input.txt", "rt", stdin);
+	int map[50][50];
+	int H, W, HH, HW, area=0, maxArea = 0;
 
-	int n;
-	int cnt = 0;
-	scanf("%d", &n);
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= n; ++j) {
+	scanf("%d %d", &H, &W);
+	for (int i = 0; i < H; ++i) {
+		for (int j = 0; j < W; ++j) {
 			scanf("%d", &map[i][j]);
 		}
 	}
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= n; ++j) {
-			int flag = 0;
-			for (int k = 0; k < 4; ++k) {
-				//중심점 기순 상하좌우 한 곳이라도 큰 곳 있으면 검사 종료 및 체크
-				if (map[i][j] <= map[i + dx[k]][j + dy[k]]) {
-					flag = 1;
-					break;
+
+	scanf("%d %d", &HH, &HW);
+
+
+	//i,j는 누적해서 더해 갈 시작위치 값을 의미
+	for (int i = 0; i <= H - HH; ++i) {
+		for (int j = 0; j <= W - HW; ++j) {
+			area = 0;
+
+			//세로는 몇회, 가로는 몇회까지만 더 할지
+			for (int k = 0; k < HH; ++k) {
+				for (int l = 0; l < HW; ++l) {
+					area += map[i + k][j + l];
 				}
 			}
-			//체크한적 없으면 카운트값 증가
-			if (flag == 0)
-				++cnt;
+			if (maxArea < area) {
+				maxArea = area;
+
+			}
+
 		}
 	}
 
-	printf("%d", cnt);
-
+	printf("%d", maxArea);
 
 	return 0;
 }
+
+
+
+
+////48. 각 행의 평균과 가장 가까운 값
+//#include <stdio.h>
+//#include <algorithm>
+//#include <math.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int num[9][9];
+//	int avg, sum, cursub, minsub, minsubnum;
+//
+//	for (int i = 0; i < 9; ++i) {
+//		sum = avg = 0;
+//		int j;
+//		for (j = 0; j < 9; ++j) {
+//			scanf("%d", &num[i][j]);
+//			sum += num[i][j];
+//		}
+//		//정수/실수 => 실수
+//		avg = sum / (double)j + 0.5;
+//		minsubnum = num[i][0];
+//		minsub = abs(avg - num[i][0]); //abs 절대값 함수(algoritm 헤더파일에 존재)
+//		for (int k = 0; k < 9; ++k) {
+//			cursub = abs(avg - num[i][k]);
+//			if (minsub > cursub) {
+//				minsub = cursub;
+//				minsubnum = num[i][k];
+//			}
+//			else if (minsub == cursub) {
+//				if (minsubnum < num[i][k])
+//					minsubnum = num[i][k];
+//
+//			}
+//		}
+//		printf("%d %d\n", avg, minsubnum);
+//	}
+//
+//
+//	return 0;
+//}
+//
+////48. 각 행의 평균과 가장 가까운 값
+//#include <stdio.h>
+//#include <math.h>
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int num[9][9];
+//	int avg[9];
+//	int sum,cursub, minsub, minsubnum;
+//
+//	for (int i = 0; i < 9; ++i) {
+//		sum = avg[i] = 0;
+//		int j;
+//		for (j = 0; j < 9; ++j) {
+//			scanf("%d", &num[i][j]);
+//			sum += num[i][j];
+//		}
+//		//정수/실수 => 실수
+//		avg[i] = sum /(double)j + 0.5;
+//		//avg[i] = round((double)sum / (double)j);
+////		printf("sum: %d, avg:%d\n", sum,avg[i]);
+//	}
+//
+//	for (int i = 0; i < 9; ++i) {
+//		minsubnum = num[i][0];
+//		minsub = avg[i] - num[i][0];
+//		if (minsub < 0) minsub = -minsub;
+//
+//
+//		for (int j = 0; j < 9; ++j) {
+//			cursub = avg[i] - num[i][j];
+//			if (cursub < 0) cursub = -cursub;
+//
+//			if (minsub > cursub) {
+//				minsub = cursub;
+//				minsubnum = num[i][j];
+//			}
+//			else if (minsub == cursub) {
+//				if (minsubnum < num[i][j])
+//					minsubnum = num[i][j];
+//			}
+//
+//		}
+//		printf("%d %d\n", avg[i], minsubnum);
+//	}
+//
+//
+//	return 0;
+//}
 
 ////47.봉우리(2차원 배열 탐색)
-#include<stdio.h>
-//전역 변수로 선언하면 자동으로 초기값 0 
-int map[52][52];
-int main() {
-	//freopen("input.txt", "rt", stdin);
-
-	int n;
-	int cnt = 0;
-	scanf("%d", &n);
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= n; ++j) {
-			scanf("%d", &map[i][j]);
-		}
-	}
-
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= n; ++j) {
-			if ((map[i][j] > map[i - 1][j]) && (map[i][j] > map[i + 1][j]) && (map[i][j] > map[i][j - 1]) && (map[i][j] > map[i][j + 1]))
-				++cnt;
-		}
-	}
-
-	printf("%d", cnt);
-
-
-	return 0;
-}
+//#include<stdio.h>
+////전역 변수로 선언하면 자동으로 초기값 0 
+//int map[52][52];
+//int dx[] = { 0,0,-1,1 };
+//int dy[] = { -1,1,0,0 };
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//
+//	int n;
+//	int cnt = 0;
+//	scanf("%d", &n);
+//	for (int i = 1; i <= n; ++i) {
+//		for (int j = 1; j <= n; ++j) {
+//			scanf("%d", &map[i][j]);
+//		}
+//	}
+//	for (int i = 1; i <= n; ++i) {
+//		for (int j = 1; j <= n; ++j) {
+//			int flag = 0;
+//			for (int k = 0; k < 4; ++k) {
+//				//중심점 기순 상하좌우 한 곳이라도 큰 곳 있으면 검사 종료 및 체크
+//				if (map[i][j] <= map[i + dx[k]][j + dy[k]]) {
+//					flag = 1;
+//					break;
+//				}
+//			}
+//			//체크한적 없으면 카운트값 증가
+//			if (flag == 0)
+//				++cnt;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//
+//
+//	return 0;
+//}
+//
+//////47.봉우리(2차원 배열 탐색)
+//#include<stdio.h>
+////전역 변수로 선언하면 자동으로 초기값 0 
+//int map[52][52];
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//
+//	int n;
+//	int cnt = 0;
+//	scanf("%d", &n);
+//	for (int i = 1; i <= n; ++i) {
+//		for (int j = 1; j <= n; ++j) {
+//			scanf("%d", &map[i][j]);
+//		}
+//	}
+//
+//	for (int i = 1; i <= n; ++i) {
+//		for (int j = 1; j <= n; ++j) {
+//			if ((map[i][j] > map[i - 1][j]) && (map[i][j] > map[i + 1][j]) && (map[i][j] > map[i][j - 1]) && (map[i][j] > map[i][j + 1]))
+//				++cnt;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//
+//
+//	return 0;
+//}
 
 ////41.연속된 자연수의 합
 //#include<stdio.h>
@@ -3042,7 +3174,7 @@ int main() {
 //
 //	return 0;
 //
-
+//}
 
 
 
@@ -3447,7 +3579,7 @@ int main() {
 //	return 0;
 //}
 
-////5.나이계산
+////5. 나이계산
 //#include<stdio.h>
 //int main() {
 //	//freopen("input.txt", "rt", stdin);
@@ -3581,6 +3713,7 @@ int main() {
 //
 //	printf("%d", sum);
 //}
+
 
 //#include <stdio.h>
 //#define MAX_N 100
