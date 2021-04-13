@@ -1,46 +1,121 @@
-//51. 영지(territory) 선택 : (large)
+//59. 부분집합(MS인터뷰:DFS)
+
 #include <stdio.h>
 #include <stdlib.h>
+
+int n, ch[11];
+
+
+void dfs(int level) {
+	if (level == n + 1) {
+		for (int i = 1; i <= n; ++i) {
+			if (ch[i] == 1)
+				printf("%d ", i);
+		}
+		printf("\n");
+
+		return;
+	}
+	else {
+		ch[level] = 1;
+		dfs(level + 1);
+
+		ch[level] = 0;
+		dfs(level + 1);
+	}
+}
+
 int main() {
-	//freopen("input.txt", "rt", stdin);
-	int H, W, HH, HW, maxArea=0, area;
-	int** map;
-	int** totalAreaMap;
+	freopen("input.txt", "rt", stdin);
+	scanf("%d", &n);
 
-	scanf("%d %d", &H, &W);
-	map = (int**)malloc(sizeof(int*) * (H + 1));
-	totalAreaMap = (int**)malloc(sizeof(int*) * (H + 1));
+	dfs(1);
 
-	for (int i = 0; i < (H + 1); ++i) {
-		map[i] = (int*)calloc(W + 1, sizeof(int));
-		totalAreaMap[i] = (int*)calloc(W + 1, sizeof(int));
-
-	}
-
-
-	//입력받으면서 현재위치의 Square형태의 까지의 누적 넓이 구하기
-	//(i,j)는 좌측 위 대각선 꼭지점
-	for (int i = 1; i <= H; ++i) {
-		for (int j = 1; j <= W; ++j) {
-			scanf("%d", &map[i][j]);
-			totalAreaMap[i][j] = totalAreaMap[i - 1][j] + totalAreaMap[i][j - 1] - totalAreaMap[i - 1][j - 1]+ map[i][j];
-		}
-	}
-	scanf("%d %d", &HH, &HW);
-
-	//(k,l)은 우측 아래 대각선 꼭지점
-	for (int k = HH; k <= H; ++k) {
-		for (int l = HW; l <= W; ++l) {
-			area = totalAreaMap[k][l] - totalAreaMap[k][l-HW] - totalAreaMap[k-HH][l] + totalAreaMap[k-HH][l-HW];
-			if (area > maxArea)
-				maxArea = area;
-		}
-
-	}
-	printf("%d\n", maxArea);
 
 	return 0;
 }
+
+////59. 부분집합(MS인터뷰:DFS)
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//void dfs(int level, int n, int* pch) {
+//	if (level == n + 1) {
+//		for (int i = 0; i < n; ++i) {
+//			if (pch[i] == 1)
+//				printf("%d ", i + 1);
+//		}
+//		printf("\n");
+//
+//		return;
+//	}
+//	pch[level-1] = 1;
+//	dfs(level + 1, n, pch);
+//	
+//	pch[level-1] = 0;
+//	dfs(level + 1, n, pch);
+//
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int n;
+//	scanf("%d", &n);
+//
+//	int* ch = (int*)calloc(n + 1, sizeof(int));
+//
+//
+//	dfs(1, n, ch);
+//
+//
+//	return 0;
+//}
+
+
+////51. 영지(territory) 선택 : (large)
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	int H, W, HH, HW, maxArea=0, area;
+//	int** map;
+//	int** totalAreaMap;
+//
+//	scanf("%d %d", &H, &W);
+//	map = (int**)malloc(sizeof(int*) * (H + 1));
+//	totalAreaMap = (int**)malloc(sizeof(int*) * (H + 1));
+//
+//	for (int i = 0; i < (H + 1); ++i) {
+//		map[i] = (int*)calloc(W + 1, sizeof(int));
+//		totalAreaMap[i] = (int*)calloc(W + 1, sizeof(int));
+//
+//	}
+//
+//
+//	//입력받으면서 현재위치의 Square형태의 까지의 누적 넓이 구하기
+//	//(i,j)는 좌측 위 대각선 꼭지점
+//	for (int i = 1; i <= H; ++i) {
+//		for (int j = 1; j <= W; ++j) {
+//			scanf("%d", &map[i][j]);
+//			totalAreaMap[i][j] = totalAreaMap[i - 1][j] + totalAreaMap[i][j - 1] - totalAreaMap[i - 1][j - 1]+ map[i][j];
+//		}
+//	}
+//	scanf("%d %d", &HH, &HW);
+//
+//	//(k,l)은 우측 아래 대각선 꼭지점
+//	for (int k = HH; k <= H; ++k) {
+//		for (int l = HW; l <= W; ++l) {
+//			area = totalAreaMap[k][l] - totalAreaMap[k][l-HW] - totalAreaMap[k-HH][l] + totalAreaMap[k-HH][l-HW];
+//			if (area > maxArea)
+//				maxArea = area;
+//		}
+//
+//	}
+//	printf("%d\n", maxArea);
+//
+//	return 0;
+//}
 
 
 ////51. 영지(territory) 선택 : (large)
