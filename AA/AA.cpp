@@ -1,39 +1,101 @@
-//59. 부분집합(MS인터뷰:DFS)
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int n, ch[11];
+////60. 합이 같은 부분집합(DFS : 아마존 인터뷰)
 
 
-void dfs(int level) {
-	if (level == n + 1) {
-		for (int i = 1; i <= n; ++i) {
-			if (ch[i] == 1)
-				printf("%d ", i);
-		}
-		printf("\n");
+////60. 합이 같은 부분집합(DFS : 아마존 인터뷰)
+//#include <stdio.h>
+//#include <stdlib.h>
+//int n;
+//bool flag = 0;
+//int num[10];
+//int subnum[10];
+//int sum1;
+//int sum2;
+////부분집합 구하기
+//void dfs(int level) {
+//	if (flag == true) return;
+//	if (level == n) {
+//
+//		//부분집합 누적합 구하기
+//		sum1 = sum2 = 0;
+//		for (int i = 0; i < n; ++i) {
+//			if (subnum[i] == true) {
+//				sum1 += num[i];
+//			}
+//			else {
+//				sum2 += num[i];
+//			}
+//		}
+//
+//		if (sum1 == sum2) {
+//			flag = 1;
+//		}
+//		return;
+//	}
+//
+//	subnum[level] = true;
+//	dfs(level + 1);
+//
+//	subnum[level] = false;
+//	dfs(level + 1);
+//
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//	scanf("%d", &n);
+//	for (int i = 0; i < n; ++i) {
+//		scanf("%d", &num[i]);
+//	}
+//	//부분집합 구하기
+//	dfs(0);
+//
+//	if (flag == 1) {
+//		printf("YES\n");
+//		return 0;
+//	}
+//
+//	printf("NO\n");
+//	return 0;
+//}
 
-		return;
-	}
-	else {
-		ch[level] = 1;
-		dfs(level + 1);
-
-		ch[level] = 0;
-		dfs(level + 1);
-	}
-}
-
-int main() {
-	freopen("input.txt", "rt", stdin);
-	scanf("%d", &n);
-
-	dfs(1);
 
 
-	return 0;
-}
+////59. 부분집합(MS인터뷰:DFS)
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//int n, ch[11];
+//
+//
+//void dfs(int level) {
+//	if (level == n + 1) {
+//		for (int i = 1; i <= n; ++i) {
+//			if (ch[i] == 1)
+//				printf("%d ", i);
+//		}
+//		printf("\n");
+//
+//		return;
+//	}
+//	else {
+//		ch[level] = 1;
+//		dfs(level + 1);
+//
+//		ch[level] = 0;
+//		dfs(level + 1);
+//	}
+//}
+//
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	scanf("%d", &n);
+//
+//	dfs(1);
+//
+//
+//	return 0;
+//}
 
 ////59. 부분집합(MS인터뷰:DFS)
 //
