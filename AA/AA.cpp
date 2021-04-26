@@ -1,37 +1,33 @@
-//61. 특정 수 만들기(DFS : MS 인터뷰)
+//63. 인접행렬(가중치 방향그래프)
 #include <stdio.h>
-int n, m, cnt;
-int num[10];
-
-
-void dfs(int depth, int total) {
-	if (depth == n) {
-		if (total == m)
-			++cnt;
-		return;
-	}
-
-	dfs(depth + 1, total + num[depth]);
-	dfs(depth + 1, total - num[depth]);
-	dfs(depth + 1, 0 + total);
-
-}
+#include <stdlib.h>
 int main() {
-	//freopen("input.txt", "rt", stdin);
+	freopen("input.txt", "rt", stdin);
+	int n, m, x, y, z;
 	scanf("%d%d", &n, &m);
-	for (int i = 0; i < n; ++i) {
-		scanf("%d", &num[i]);
+	
+	//2차원 동적 배열 할당
+	int** map = (int**)calloc(n+1, sizeof(int));
+	for (int i = 0; i <= n; ++i) {
+		map[i] = (int*)calloc(n+1, sizeof(int));	
 	}
 
-	dfs(0, 0);
-	if (cnt == 0) {
-		printf("%d", -1);
+	//2차원 가중치 행렬에 대한 값을 입력
+	for (int i = 0; i < m; ++i) {
+		scanf("%d%d%d", &x, &y, &z);
+		map[x][y] = z;
 	}
-	else
-		printf("%d", cnt);
+
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= n; ++j) {
+			printf("%d ", map[i][j]);
+		}
+		printf("\n");
+	}
 
 	return 0;
 }
+
 
 ////48. 각 행의 평균과 가장 가까운 값
 //#include <stdio.h>
