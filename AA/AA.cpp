@@ -75,6 +75,7 @@ void dfs(int flag, int start, int end) {
 	}
 }
 int check() {
+	//부등호 조건이 맞지 않다면 0을 리턴하고 맞다면 1을 리턴
 	for (int i = 0; i < strlen(str); i++) {
 		if (str[i] == '<') {
 			if (copy[i] >= copy[i + 1]) {
