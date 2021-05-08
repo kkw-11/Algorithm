@@ -1,32 +1,239 @@
-//63. 인접행렬(가중치 방향그래프)
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<string.h>
+
+void swap(int a, int b);
+void dfs(int flag, int start, int end);
+int check();
+
+char str[11], max[11], min[11], copy[11];
 int main() {
-	freopen("input.txt", "rt", stdin);
-	int n, m, x, y, z;
-	scanf("%d%d", &n, &m);
-	
-	//2차원 동적 배열 할당
-	int** map = (int**)calloc(n+1, sizeof(int));
-	for (int i = 0; i <= n; ++i) {
-		map[i] = (int*)calloc(n+1, sizeof(int));	
-	}
-
-	//2차원 가중치 행렬에 대한 값을 입력
-	for (int i = 0; i < m; ++i) {
-		scanf("%d%d%d", &x, &y, &z);
-		map[x][y] = z;
-	}
-
-	for (int i = 1; i <= n; ++i) {
-		for (int j = 1; j <= n; ++j) {
-			printf("%d ", map[i][j]);
+	//freopen("input.txt", "rt", stdin);
+	int k, i;
+	scanf("%d", &k);
+	for (i = 0; i <= k; i++) {
+		if (i != k) {
+			getchar();
+			str[i] = getchar();
 		}
-		printf("\n");
+		else str[i] = NULL;
+		//부등호의 수 + 1만큼의 수를 
+		//최대 값에서는 9부터 아래로 하나씩 입력
+		//최소 값에서는 0부터 위로 하나씩 입력
+		max[i] = '9' - k + i;
+		min[i] = '0' + k - i;
 	}
-
+	max[i] = NULL;
+	min[i] = NULL;
+	strcpy(copy, max);
+	dfs(1, 0, k);
+	strcpy(copy, min);
+	dfs(0, 0, k);
+	printf("%s\n%s", max, min);
 	return 0;
 }
+
+void swap(int a, int b) {
+	char tmp;
+	tmp = copy[a];
+	copy[a] = copy[b];
+	copy[b] = tmp;
+}
+
+//flag 1이면 최대값 구하기
+//flag 0이면 최소값 구하기
+void dfs(int flag, int start, int end) {
+	//n이 숫자 배열의 범위를 벗어났을 경우 이제 모두 정렬 한 상태
+	//정렬된 상태에서 부등호와 맞는지 체크하고 맞다면 현재값이 최대값봐 비교하여 최대값 구하기
+	if (start == end + 1) {
+		//n ==1 i=0 기준으로 모든 정렬을 완료 후 현재 값에 이상있는지 체크
+		//부등호 값에 이상이 없이 숫자 배열이 되었다면 최대 최소 비교
+		if (check()) {
+			//flag 1 최대값 체크, flat 0 최소값 체크
+			if (flag) {
+				//strcmp 문자열 비교 함수 
+				//strcmp(str1, str2);  
+				//str1 < str2 인 경우에는 음수 반환
+				if (strcmp(max, copy) < 0) {
+					strcpy(max, copy);
+				}
+			}
+			else {
+				//str1 > str2 인 경우에는 양수 반환
+				if (strcmp(min, copy) > 0) {
+					strcpy(min, copy);
+				}
+			}
+		}
+	}
+
+	//모든 경우의 수 배열하기
+	//순열 짜기 기본 코드
+	for (int i = start; i <= end; i++) {
+		swap(start, i);
+		dfs(flag, start + 1, end);
+		swap(start, i); //다시 원래 위치로 되돌리기
+	}
+}
+int check() {
+	for (int i = 0; i < strlen(str); i++) {
+		if (str[i] == '<') {
+			if (copy[i] >= copy[i + 1]) {
+				return 0;
+			}
+		}
+		else if (str[i] == '>') {
+			if (copy[i] <= copy[i + 1]) {
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
+
+
+
+//#include <stdio.h>
+//
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int x,cnt=0, hundred,ten,one;
+//	scanf("%d", &x);
+//
+//	if (x < 100) {
+//		printf("%d", x);
+//	}
+//	else {
+//		for (int i = 100; i <= x; ++i) {
+//			hundred = i / 100;
+//			ten = (i % 100)/10;
+//			one = (i % 100) % 10;
+//			if (hundred - ten == ten - one)
+//				++cnt;
+//		}
+//		printf("%d", 99+cnt);
+//	}
+//
+//
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//
+//int map[7][7], visited[7][7];
+//int dx[] = { 1,0,-1,0 };
+//int dy[] = { 0,1,0,-1 };
+//int cnt;
+//
+//void go(int y, int x) {
+//	if (y == 6 && x == 6) {
+//		++cnt;
+//	}
+//	else {
+//		for (int i = 0; i < 4; ++i) {
+//			// xx, yy는 다음에 갈 곳, x,y는 현재 위치
+//			int xx = x + dx[i];
+//			int yy = y + dy[i];
+//
+//			if (xx >= 0 && xx < 7 && yy >= 0 && yy < 7 && map[yy][xx] == 0 && visited[yy][xx] == 0) {
+//				visited[yy][xx] = 1;
+//				go(yy, xx);
+//				//직전에 방문 한곳 다시 미방문 처리
+//				visited[yy][xx] = 0;
+//			}
+//		}
+//	}
+//}
+//
+//int main() {
+//	//freopen("input.txt", "rt", stdin);
+//
+//	for (int i = 0; i < 7; ++i) {
+//		for (int j = 0; j < 7; ++j) {
+//			scanf("%d", &map[i][j]);
+//		}
+//	}
+//
+//	visited[0][0] = 1;
+//	go(0, 0);
+//
+//	printf("%d", cnt);
+//	return 0;
+//}
+
+
+
+////https://www.acmicpc.net/problem/1450
+//#include<cstdio>
+//#include<algorithm>
+//using namespace std;
+//
+//#define mxl 30
+//#define mxn 30
+//int sum1[mxl], sum2[mxl], l1, l2, a[mxn];
+//
+//void dfs(int start, int end, int sum, int flag, int m) {
+//    if (sum > m) return;
+//    if (start == end) {
+//        if (flag == 1) sum1[l1++] = sum;
+//        else sum2[l2++] = sum;
+//        return;
+//    }
+//    dfs(start + 1, end, sum, flag, m);
+//    dfs(start + 1, end, sum + a[start], flag, m);
+//}
+//int main() {
+//    freopen("input.txt", "rt", stdin);
+//    int n, m, cnt = 0;
+//    scanf("%d%d", &n, &m);
+//
+//    for (int i = 0; i < n / 2; i++) scanf("%d", &a[i]);
+//    dfs(0, n / 2, 0, 1, m);
+//    sort(sum1, sum1 + l1);
+//
+//    for (int i = n / 2; i < n; i++) scanf("%d", &a[i - (n / 2)]);
+//    dfs(0, n - (n / 2), 0, 2, m);
+//    sort(sum2, sum2 + l2);
+//
+//    for (int i = 0, j = l2 - 1; i < l1 && j >= 0; i++) {
+//        while (sum1[i] + sum2[j] > m) j--;
+//        cnt += j + 1;
+//    }
+//    printf("%d", cnt);
+//    return 0;
+//}
+
+
+////63. 인접행렬(가중치 방향그래프)
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main() {
+//	freopen("input.txt", "rt", stdin);
+//	int n, m, x, y, z;
+//	scanf("%d%d", &n, &m);
+//	
+//	//2차원 동적 배열 할당
+//	int** map = (int**)calloc(n+1, sizeof(int));
+//	for (int i = 0; i <= n; ++i) {
+//		map[i] = (int*)calloc(n+1, sizeof(int));	
+//	}
+//
+//	//2차원 가중치 행렬에 대한 값을 입력
+//	for (int i = 0; i < m; ++i) {
+//		scanf("%d%d%d", &x, &y, &z);
+//		map[x][y] = z;
+//	}
+//
+//	for (int i = 1; i <= n; ++i) {
+//		for (int j = 1; j <= n; ++j) {
+//			printf("%d ", map[i][j]);
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
 
 
 ////48. 각 행의 평균과 가장 가까운 값
